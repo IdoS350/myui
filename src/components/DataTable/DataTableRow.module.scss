@@ -5,6 +5,11 @@
       position: absolute;
       width: 100%;
       will-change: transform;
+      transition: transform 150ms ease-out;
+
+      &[data-scrolling='true'] {
+        transition: none;
+      }
     }
 
     .TableCell {
@@ -24,24 +29,20 @@
     }
   }
 
-  .CollapsiblePanel {
-    display: flex;
-    height: var(--collapsible-panel-height);
-    flex-direction: column;
-    justify-content: end;
+  .DetailPanel {
+    height: 0;
     width: 100%;
     overflow: hidden;
-    transition: all 150ms ease-out;
-    padding-top: calc(var(--row-gap) / 2);
+    transition: height 150ms ease-out;
 
-    &[data-starting-style],
-    &[data-ending-style] {
-      height: 0;
-      padding-top: 0;
+    &[data-expanded='true'] {
+      height: var(--detail-panel-height, 0px);
     }
   }
 
-  .VirtualDetailPanel {
+  // Padding lives here so its measured height
+  // equals the space the virtualizer reserves
+  .DetailPanelContent {
     display: flex;
     flex-direction: column;
     width: 100%;

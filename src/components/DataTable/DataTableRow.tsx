@@ -1,9 +1,8 @@
 'use no memo'
 
-import { Collapsible } from '@base-ui/react/collapsible'
 import { flexRender, type Row } from '@tanstack/react-table'
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual'
-import { Fragment, type RefObject } from 'react'
+import { Fragment, useLayoutEffect, useRef, type RefObject } from 'react'
 import { useDataTableContext } from './DataTableContext'
 import styles from './DataTableRow.module.scss'
 import TablePrimitive from './TablePrimitive'
@@ -25,13 +24,47 @@ export function DataTableRow<TData>({
   rowVirtualizer,
   ref,
 }: DataTableRowProps<TData>) {
-  const { table, renderDetailPanel } = useDataTableContext<TData>()
+  const { table, renderDetailPanel, setDetailPanelHeight } =
+    useDataTableContext<TData>()
 
   const rowIndex = renderDetailPanel ? row.index * 2 : row.index
   const detailPanelIndex = rowIndex + 1
   const detailVirtualItem = rowVirtualizer
     ?.getVirtualItems()
     .find((v) => v.index === detailPanelIndex)
+
+  const isExpanded = row.getIsExpanded()
+  const isScrolling = enableVirtualization
+    ? rowVirtualizer?.isScrolling
+    : undefined
+  const detailPanelRef = useRef<HTMLDivElement>(null)
+  const detailContentRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    const panel = detailPanelRef.current
+    const content = detailContentRef.current
+    if (!panel || !content) return
+
+    const sync = () => {
+      const height = content.offsetHeight
+      panel.style.setProperty('--detail-panel-height', `${height}px`)
+      setDetailPanelHeight?.(row.id, height)
+      if (enableVirtualization && rowVirtualizer && row.getIsExpanded()) {
+        rowVirtualizer.measure()
+      }
+    }
+
+    sync()
+    const observer = new ResizeObserver(sync)
+    observer.observe(content)
+    return () => observer.disconnect()
+  }, [enableVirtualization, rowVirtualizer, setDetailPanelHeight, row])
+
+  useLayoutEffect(() => {
+    if (enableVirtualization && rowVirtualizer) {
+      rowVirtualizer.measure()
+    }
+  }, [enableVirtualization, rowVirtualizer, isExpanded])
 
   return (
     <Fragment>
@@ -40,6 +73,7 @@ export function DataTableRow<TData>({
         data-index={rowIndex}
         data-state={row.getIsSelected() && 'selected'}
         data-virtualized={enableVirtualization}
+        data-scrolling={isScrolling}
         ref={(node) => {
           rowVirtualizer?.measureElement(node)
           if (rowsRef) {
@@ -79,11 +113,7 @@ export function DataTableRow<TData>({
           data-detail-panel
           data-index={detailPanelIndex}
           data-virtualized={enableVirtualization}
-          ref={
-            rowVirtualizer
-              ? (node) => rowVirtualizer.measureElement(node)
-              : undefined
-          }
+          data-scrolling={isScrolling}
           style={{
             transform: detailVirtualItem
               ? `translateY(${detailVirtualItem.start}px)`
@@ -95,19 +125,17 @@ export function DataTableRow<TData>({
             data-virtualized={enableVirtualization}
             colSpan={row.getVisibleCells().length}
           >
-            {enableVirtualization ? (
-              row.getIsExpanded() && (
-                <div className={styles.VirtualDetailPanel}>
-                  {renderDetailPanel({ row, table })}
-                </div>
-              )
-            ) : (
-              <Collapsible.Root open={row.getIsExpanded()}>
-                <Collapsible.Panel className={styles.CollapsiblePanel}>
-                  {renderDetailPanel({ row, table })}
-                </Collapsible.Panel>
-              </Collapsible.Root>
-            )}
+            <div
+              ref={detailPanelRef}
+              className={styles.DetailPanel}
+              data-expanded={isExpanded}
+              role='region'
+              inert={!isExpanded}
+            >
+              <div ref={detailContentRef} className={styles.DetailPanelContent}>
+                {renderDetailPanel({ row, table })}
+              </div>
+            </div>
           </td>
         </tr>
       )}

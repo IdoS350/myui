@@ -12,6 +12,7 @@ export interface DataTableContextValue<TData = unknown> {
   columnSizeVars: Record<string, number>
   isLoading?: boolean
   loadingRowsCount: number
+  setDetailPanelHeight?: (rowId: string, height: number) => void
 }
 
 export const DataTableContext = createContext<DataTableContextValue | null>(

@@ -50,6 +50,7 @@ function DataTableRoot<TData, TValue>({
   ...options
 }: DataTableRootProps<TData, TValue>) {
   const tableContainerRef = useRef<HTMLDivElement>(null)
+  const detailPanelHeights = useRef<Record<string, number>>({})
 
   const columns = useMemo<ColumnDef<TData, TValue>[]>(
     () =>
@@ -82,7 +83,8 @@ function DataTableRoot<TData, TValue>({
     (index: number) => {
       if (!renderDetailPanel || index % 2 === 0) return 64
       const row = table.getRowModel().rows[(index - 1) / 2]
-      return row?.getIsExpanded() ? 100 : 0
+      if (!row?.getIsExpanded()) return 0
+      return detailPanelHeights.current[row.id] ?? 100
     },
     [renderDetailPanel, table],
   )
@@ -107,6 +109,10 @@ function DataTableRoot<TData, TValue>({
 
   const columnSizeVars = useColumnSizeVars(table)
 
+  const setDetailPanelHeight = useCallback((rowId: string, height: number) => {
+    detailPanelHeights.current[rowId] = height
+  }, [])
+
   const contextValue: DataTableContextValue<TData> = {
     table,
     rowVirtualizer,
@@ -116,6 +122,9 @@ function DataTableRoot<TData, TValue>({
     columnSizeVars,
     isLoading,
     loadingRowsCount,
+    setDetailPanelHeight: enableVirtualization
+      ? setDetailPanelHeight
+      : undefined,
   }
 
   return (
