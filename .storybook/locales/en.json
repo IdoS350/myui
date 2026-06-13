@@ -404,6 +404,13 @@
     "endSlot": "End slot",
     "bothSlots": "Both slots"
   },
+  "otpField": {
+    "label": "Verification code",
+    "enterCode": "Enter 6-digit code",
+    "masked": "Masked",
+    "withSeparator": "With separator",
+    "alphanumeric": "Alphanumeric"
+  },
   "kbd": {
     "save": "Save",
     "cancel": "Cancel",
