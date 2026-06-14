@@ -1,0 +1,6 @@
+{
+  "eval_id": 4,
+  "eval_name": "update-with-local-changes",
+  "prompt": "I've customized the Button component in my app (rounded corners, different padding). Now myui released a new version of Button. How do I update without losing my changes?",
+  "assertions": []
+}

@@ -1,0 +1,20 @@
+{
+  "reviews": [
+    {
+      "run_id": "eval-0-setup-with_skill",
+      "feedback": "- Note that sometimes shadcn still requires a tailwind config, and so an empty tailwind config is needed\n- Primitves are ok to use for rare edge cases/unusual components",
+      "timestamp": "2026-06-13T09:51:52.632Z"
+    },
+    {
+      "run_id": "eval-3-dark-mode-with_skill",
+      "feedback": "theme/main.scss can also be imported from the main tsx file",
+      "timestamp": "2026-06-13T09:51:52.632Z"
+    },
+    {
+      "run_id": "eval-4-update-with_skill",
+      "feedback": "I think it'll be better not to override the file and than manually reapply the changes, but the other way around. Look at the diff and changelog to see what was updated, and than apply these changes to our modified component.\nAnother small note: shadcn add --diff is showing the top 5 modified files, and sometimes there will be more than that (if you modified the theme files, for example). You can pass the command a specific dir to only view the diffs in that dir (ie src/components/ui/Button).",
+      "timestamp": "2026-06-13T09:51:52.632Z"
+    }
+  ],
+  "status": "in_progress"
+}

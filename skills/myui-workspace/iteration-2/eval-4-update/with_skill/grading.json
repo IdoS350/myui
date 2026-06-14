@@ -1,0 +1,11 @@
+{
+  "eval_id": 4,
+  "run": "with_skill",
+  "expectations": [
+    {"text": "Uses the --diff flag to preview changes before overwriting", "passed": true, "evidence": "Step 1: 'pnpm dlx shadcn@latest add @myui/button --diff' — correct"},
+    {"text": "Mentions checking src/components/Button/CHANGELOG.md", "passed": true, "evidence": "Step 2: 'Open src/components/Button/CHANGELOG.md' with example CHANGELOG shown"},
+    {"text": "Gives the shadcn add @myui/button command to apply the update", "passed": true, "evidence": "Step 3: 'pnpm dlx shadcn@latest add @myui/button'"},
+    {"text": "Advises reviewing/re-applying local customizations after the update", "passed": true, "evidence": "Step 4: 'Re-apply Your Customizations' with concrete SCSS example"}
+  ],
+  "pass_rate": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "run": "with_skill",
+  "expectations": [
+    {"text": "Shows corrected import from @/components/Select/Select", "passed": true, "evidence": "import { SelectRoot, SelectTrigger, SelectList, SelectItem } from '@/components/Select/Select'"},
+    {"text": "Explains primitives.ts is internal and should not be imported directly", "passed": true, "evidence": "'primitives.ts is an internal implementation detail that wires Base UI components to CSS modules. It's not part of the public API.'"},
+    {"text": "Uses @/ alias (not a relative ../ path)", "passed": true, "evidence": "@/components/Select/Select used throughout"},
+    {"text": "Does not recommend importing from primitives.ts", "passed": true, "evidence": "Explicitly warns against it"}
+  ],
+  "pass_rate": 1.0
+}

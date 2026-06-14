@@ -1,0 +1,6 @@
+{
+  "eval_id": 0,
+  "eval_name": "full-setup-walkthrough",
+  "prompt": "I'm starting a new Vite + React + TypeScript app and I want to use myui. Walk me through the full setup — the path alias config, adding the registry, and installing the Select component.",
+  "assertions": []
+}

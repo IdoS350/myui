@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "bad-import-correction",
+  "prompt": "I added a myui Select to my app and it works, but I realized I'm importing from the primitives file. My linter is also flagging a relative import. Can you fix my import?",
+  "assertions": []
+}
