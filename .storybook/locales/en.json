@@ -211,6 +211,12 @@
   "collapsible": {
     "recoveryKeys": "Recovery keys"
   },
+  "autocomplete": {
+    "searchFruits": "Search fruits…",
+    "searchProduce": "Search produce…",
+    "noResultsFound": "No results found.",
+    "placeholderSize": "{{size}} — search a fruit"
+  },
   "combobox": {
     "chooseAFruit": "Choose a fruit…",
     "searchProduce": "Search produce…",
