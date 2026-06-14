@@ -75,11 +75,6 @@
     height: var(--font-size-xs);
   }
 
-  .root[dir='rtl'] .nav .chevron {
-    transform: rotate(180deg);
-    transform-origin: 50%;
-  }
-
   .dropdowns {
     position: relative;
     display: inline-flex;

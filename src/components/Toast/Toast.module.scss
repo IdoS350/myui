@@ -76,6 +76,10 @@
     &[data-ending-style] {
       opacity: 0;
       translate: calc(100% + var(--space-4)) calc(var(--toast-index, 0) * -8px);
+
+      @include rtl {
+        translate: calc(-1 * (100% + var(--space-4))) calc(var(--toast-index, 0) * -8px);
+      }
     }
 
     /* While being swiped, disable transition so it tracks the gesture */
