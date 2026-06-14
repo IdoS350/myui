@@ -4,7 +4,7 @@
   .viewport {
     --toast-exit-dir: 1;
 
-    [dir='rtl'] & {
+    &:dir(rtl) {
       --toast-exit-dir: -1;
     }
 
