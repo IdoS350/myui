@@ -2,6 +2,12 @@
 
 @layer components {
   .viewport {
+    --toast-exit-dir: 1;
+
+    [dir='rtl'] & {
+      --toast-exit-dir: -1;
+    }
+
     position: fixed;
     inset-block-end: var(--space-4);
     inset-inline-end: var(--space-4);
@@ -75,11 +81,8 @@
     /* Exit animation */
     &[data-ending-style] {
       opacity: 0;
-      translate: calc(100% + var(--space-4)) calc(var(--toast-index, 0) * -8px);
-
-      @include rtl {
-        translate: calc(-1 * (100% + var(--space-4))) calc(var(--toast-index, 0) * -8px);
-      }
+      translate: calc(var(--toast-exit-dir) * (100% + var(--space-4)))
+        calc(var(--toast-index, 0) * -8px);
     }
 
     /* While being swiped, disable transition so it tracks the gesture */
