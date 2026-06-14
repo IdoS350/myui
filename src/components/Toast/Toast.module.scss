@@ -2,12 +2,6 @@
 
 @layer components {
   .viewport {
-    --toast-exit-dir: 1;
-
-    &:dir(rtl) {
-      --toast-exit-dir: -1;
-    }
-
     position: fixed;
     inset-block-end: var(--space-4);
     inset-inline-end: var(--space-4);
@@ -32,6 +26,12 @@
   }
 
   .root {
+    --toast-exit-x: calc(100% + var(--space-4));
+
+    &:dir(rtl) {
+      --toast-exit-x: calc(-100% - var(--space-4));
+    }
+
     position: absolute;
     inset-block-end: 0;
     inset-inline: 0;
@@ -78,16 +78,39 @@
       translate: 0 var(--space-2);
     }
 
-    /* Exit animation */
+    /* Exit animation (close button / timeout) */
     &[data-ending-style] {
       opacity: 0;
-      translate: calc(var(--toast-exit-dir) * (100% + var(--space-4)))
-        calc(var(--toast-index, 0) * -8px);
+      translate: var(--toast-exit-x) calc(var(--toast-index, 0) * -8px);
+    }
+
+    /*
+     * Swipe-dismiss exit: use a keyframe animation instead of a transition so
+     * the animation can start from where the finger left off
+     * (var(--toast-swipe-movement-x)) rather than the element's resting
+     * position. Transitions always start from the last-painted computed value,
+     * which was 0 during [data-swiping], causing a visible snap-back.
+     * Keyframe `from` values are resolved at animation-start against the live
+     * element, picking up the current --toast-swipe-movement-x.
+     */
+    &[data-ending-style][data-swipe-direction] {
+      animation: toast-swipe-exit 400ms var(--ease-out-quart) forwards;
     }
 
     /* While being swiped, disable transition so it tracks the gesture */
     &[data-swiping] {
       transition: none;
+    }
+  }
+
+  @keyframes toast-swipe-exit {
+    from {
+      translate: var(--toast-swipe-movement-x, 0px) calc(var(--toast-index, 0) * -8px);
+      opacity: 1;
+    }
+    to {
+      translate: var(--toast-exit-x) calc(var(--toast-index, 0) * -8px);
+      opacity: 0;
     }
   }
 
