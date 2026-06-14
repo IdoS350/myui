@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "run": "with_skill",
+  "expectations": [
+    {"text": "Directs the user to edit src/theme/colors.scss", "passed": true, "evidence": "'The installed theme lives at: src/theme/colors.scss'"},
+    {"text": "Overrides --color-primary token", "passed": true, "evidence": "--color-primary: oklch(55% 70% 20deg) shown"},
+    {"text": "Also overrides --color-primary-hover", "passed": true, "evidence": "--color-primary-hover shown in both light and dark variants"},
+    {"text": "Mentions oklch color format", "passed": true, "evidence": "Dedicated 'Understanding OKLCH' section with format explanation"},
+    {"text": "Includes a dark mode variant (data-theme='dark' block or equivalent)", "passed": true, "evidence": "&[data-theme='dark'] block shown with dark mode primary values"}
+  ],
+  "pass_rate": 1.0
+}

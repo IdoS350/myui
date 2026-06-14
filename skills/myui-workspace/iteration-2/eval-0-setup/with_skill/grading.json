@@ -1,0 +1,13 @@
+{
+  "eval_id": 0,
+  "run": "with_skill",
+  "expectations": [
+    {"text": "Shows tsconfig.json with @/* path mapping", "passed": true, "evidence": "Shows '@/*': ['./src/*'] in tsconfig snippet"},
+    {"text": "Shows vite.config.ts alias configuration", "passed": true, "evidence": "Shows alias: { '@': path.resolve(__dirname, 'src') }"},
+    {"text": "Includes the correct myui registry URL (idos350.github.io/myui) in components.json", "passed": true, "evidence": "Full URL https://idos350.github.io/myui/r/{name}.json present under @myui key"},
+    {"text": "Shows a complete components.json with aliases block (not just the registries key)", "passed": true, "evidence": "Shows $schema, style, rsc, tsx, aliases, and registries — full config"},
+    {"text": "Mentions DirectionProvider for RTL support", "passed": true, "evidence": "DirectionProvider mentioned under 'Next Steps' — RTL noted"},
+    {"text": "Shows correct shadcn CLI add command for select (@myui/select)", "passed": true, "evidence": "pnpm dlx shadcn@latest add @myui/select shown in Step 3"}
+  ],
+  "pass_rate": 1.0
+}

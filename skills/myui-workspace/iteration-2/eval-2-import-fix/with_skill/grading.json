@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "run": "with_skill",
+  "expectations": [
+    {"text": "Shows corrected import from @/components/Select/Select", "passed": true, "evidence": "import { SelectRoot, SelectTrigger, SelectList, SelectItem } from '@/components/Select/Select'"},
+    {"text": "Explains primitives.ts is for internal/advanced use, not general imports", "passed": true, "evidence": "Explains primitives.ts is internal; normal usage should use ComponentName.tsx"},
+    {"text": "Uses @/ alias (not a relative ../ path)", "passed": true, "evidence": "@/ used throughout — no relative paths"},
+    {"text": "Does not recommend importing from primitives.ts for normal usage", "passed": true, "evidence": "Explicitly warns against primitives.ts import for normal usage"}
+  ],
+  "pass_rate": 1.0
+}

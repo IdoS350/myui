@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "run": "without_skill",
+  "expectations": [
+    {"text": "Shows tsconfig.json with @/* path mapping", "passed": true, "evidence": "Explored project files and found tsconfig pattern — shown correctly"},
+    {"text": "Shows vite.config.ts alias configuration", "passed": true, "evidence": "Shows alias configuration in vite.config.ts"},
+    {"text": "Includes the correct myui registry URL (idos350.github.io/myui)", "passed": true, "evidence": "Agent searched project and found the URL in Installation.mdx"},
+    {"text": "Shows components.json registries block", "passed": true, "evidence": "Shows registries block correctly"},
+    {"text": "Shows correct shadcn CLI add command for select (@myui/select)", "passed": true, "evidence": "Includes pnpm dlx shadcn@latest add @myui/select"}
+  ],
+  "pass_rate": 1.0
+}

@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "run": "without_skill",
+  "expectations": [
+    {"text": "Shows corrected import from @/components/Select/Select", "passed": true, "evidence": "import { SelectItem, SelectList, SelectRoot, SelectTrigger } from '@/components/Select/Select'"},
+    {"text": "Explains primitives.ts is internal and should not be imported directly", "passed": true, "evidence": "Agent read CLAUDE.md and project files to find this rule"},
+    {"text": "Uses @/ alias (not a relative ../ path)", "passed": true, "evidence": "@/components/Select/Select shown"},
+    {"text": "Does not recommend importing from primitives.ts", "passed": true, "evidence": "Correctly shows primitives import as wrong example only"}
+  ],
+  "pass_rate": 1.0
+}
