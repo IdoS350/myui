@@ -2,6 +2,8 @@
 
 Personal component library built with React, TypeScript, and [Base UI](https://base-ui.com).
 
+**[Documentation](https://idos350.github.io/myui)**
+
 ## Development
 
 ```bash

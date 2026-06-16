@@ -257,6 +257,31 @@
       "meta": { "version": "1.0.0" }
     },
     {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "dependencies": ["@base-ui/react@^1.5.0", "lucide-react@^1.16.0"],
+      "registryDependencies": ["@myui/style-utils", "@myui/theme"],
+      "files": [
+        {
+          "path": "src/components/Autocomplete/Autocomplete.module.scss",
+          "type": "registry:ui",
+          "target": "@ui/Autocomplete/Autocomplete.module.scss"
+        },
+        {
+          "path": "src/components/Autocomplete/Autocomplete.tsx",
+          "type": "registry:ui",
+          "target": "@ui/Autocomplete/Autocomplete.tsx"
+        },
+        {
+          "path": "src/components/Autocomplete/primitives.ts",
+          "type": "registry:ui",
+          "target": "@ui/Autocomplete/primitives.ts"
+        }
+      ],
+      "meta": { "version": "1.0.0" }
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -339,7 +364,7 @@
           "target": "@ui/Calendar/Calendar.tsx"
         }
       ],
-      "meta": { "version": "1.0.0" }
+      "meta": { "version": "1.0.2" }
     },
     {
       "name": "checkbox",
@@ -607,7 +632,7 @@
           "target": "@ui/DataTable/useColumnSizeVars.ts"
         }
       ],
-      "meta": { "version": "1.0.0" }
+      "meta": { "version": "1.0.1" }
     },
     {
       "name": "date-input",
@@ -901,6 +926,31 @@
           "path": "src/components/NumberField/primitives.ts",
           "type": "registry:ui",
           "target": "@ui/NumberField/primitives.ts"
+        }
+      ],
+      "meta": { "version": "1.0.1" }
+    },
+    {
+      "name": "o-t-p-field",
+      "type": "registry:ui",
+      "title": "OTPField",
+      "dependencies": ["@base-ui/react@^1.5.0"],
+      "registryDependencies": ["@myui/style-utils", "@myui/theme"],
+      "files": [
+        {
+          "path": "src/components/OTPField/OTPField.module.scss",
+          "type": "registry:ui",
+          "target": "@ui/OTPField/OTPField.module.scss"
+        },
+        {
+          "path": "src/components/OTPField/OTPField.tsx",
+          "type": "registry:ui",
+          "target": "@ui/OTPField/OTPField.tsx"
+        },
+        {
+          "path": "src/components/OTPField/primitives.ts",
+          "type": "registry:ui",
+          "target": "@ui/OTPField/primitives.ts"
         }
       ],
       "meta": { "version": "1.0.0" }
@@ -1253,7 +1303,7 @@
           "target": "@ui/Toast/useToast.ts"
         }
       ],
-      "meta": { "version": "1.0.0" }
+      "meta": { "version": "1.0.1" }
     },
     {
       "name": "toggle",
