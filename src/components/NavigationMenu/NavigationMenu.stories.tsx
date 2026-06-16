@@ -1,5 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { BarChart2, Globe, LayoutDashboard, Link2, Settings, Users } from 'lucide-react'
+import {
+  BarChart2,
+  Globe,
+  LayoutDashboard,
+  Link2,
+  Settings,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  Zap,
+} from 'lucide-react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
@@ -181,6 +191,122 @@ export const WithLinks: Story = {
             <NavigationMenuLink href='#'>{t('common.settings')}</NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
+      </NavigationMenuRoot>
+    )
+  },
+}
+
+export const Animated: Story = {
+  render: function Animated() {
+    return (
+      <NavigationMenuRoot>
+        <NavigationMenuList>
+          <NavigationMenuItem value='platform'>
+            <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <a
+                  href='#'
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    width: 200,
+                    padding: 16,
+                    borderRadius: 8,
+                    background:
+                      'linear-gradient(135deg, var(--color-primary) 0%, oklch(0.55 0.2 280) 100%)',
+                    color: '#fff',
+                    textDecoration: 'none',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Sparkles size={24} style={{ marginBlockEnd: 'auto' }} />
+                  <span
+                    style={{
+                      fontSize: 'var(--font-size-sm)',
+                      fontWeight: 'var(--font-weight-semibold)',
+                      marginBlockEnd: 4,
+                    }}
+                  >
+                    What&apos;s new
+                  </span>
+                  <span style={{ fontSize: 'var(--font-size-xs)', opacity: 0.8 }}>
+                    See the latest features and improvements
+                  </span>
+                </a>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 180px)',
+                    gap: 4,
+                    alignContent: 'start',
+                  }}
+                >
+                  <NavCard
+                    icon={<LayoutDashboard size={16} />}
+                    title='Dashboard'
+                    description='Overview of metrics'
+                  />
+                  <NavCard
+                    icon={<BarChart2 size={16} />}
+                    title='Analytics'
+                    description='Track trends'
+                  />
+                  <NavCard
+                    icon={<Zap size={16} />}
+                    title='Automations'
+                    description='Run workflows'
+                  />
+                  <NavCard
+                    icon={<ShieldCheck size={16} />}
+                    title='Security'
+                    description='Access & permissions'
+                  />
+                  <NavCard
+                    icon={<Users size={16} />}
+                    title='Teams'
+                    description='Collaborate together'
+                  />
+                  <NavCard
+                    icon={<Settings size={16} />}
+                    title='Settings'
+                    description='Configure workspace'
+                  />
+                </div>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem value='company'>
+            <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 180 }}>
+                <NavCard
+                  icon={<Globe size={16} />}
+                  title='About'
+                  description='Our story and mission'
+                />
+                <NavCard
+                  icon={<Users size={16} />}
+                  title='Careers'
+                  description='Join our growing team'
+                />
+                <NavCard
+                  icon={<Link2 size={16} />}
+                  title='Press'
+                  description='News and media resources'
+                />
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink href='#'>Pricing</NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+
+        <NavigationMenuViewport arrow />
       </NavigationMenuRoot>
     )
   },

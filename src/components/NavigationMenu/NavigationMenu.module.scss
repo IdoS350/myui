@@ -17,10 +17,6 @@
     gap: var(--space-1);
   }
 
-  .item {
-    // li — no intrinsic layout needed; trigger/link children are full-width
-  }
-
   .trigger {
     display: inline-flex;
     align-items: center;
@@ -74,9 +70,17 @@
   .positioner {
     z-index: 50;
     outline: none;
+    width: var(--positioner-width);
+    max-width: var(--available-width);
+    transition:
+      top 350ms var(--ease-out-expo),
+      left 350ms var(--ease-out-expo),
+      right 350ms var(--ease-out-expo),
+      bottom 350ms var(--ease-out-expo);
   }
 
   .popup {
+    position: relative;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -84,42 +88,63 @@
     outline: none;
     overflow: hidden;
     transform-origin: var(--transform-origin);
+    width: var(--popup-width);
+    height: var(--popup-height);
     transition:
-      opacity var(--duration-base) var(--ease-out-quart),
-      transform var(--duration-base) var(--ease-out-quart);
+      opacity 350ms var(--ease-out-expo),
+      transform 350ms var(--ease-out-expo),
+      width 350ms var(--ease-out-expo),
+      height 350ms var(--ease-out-expo);
 
-    &[data-starting-style],
+    &[data-starting-style] {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
     &[data-ending-style] {
       opacity: 0;
-      transform: scale(0.96);
+      transform: scale(0.9);
+      transition-duration: 150ms;
+      transition-timing-function: ease;
     }
   }
 
   .viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    transition:
-      width var(--duration-slow) var(--ease-out-quart),
-      height var(--duration-slow) var(--ease-out-quart);
   }
 
   .content {
     padding: var(--space-5);
     width: max-content;
+    transition:
+      opacity 350ms var(--ease-out-expo),
+      transform 350ms var(--ease-out-expo);
 
-    &[data-activation-direction='right'] {
-      animation: navContentSlideFromRight var(--duration-slow) var(--ease-out-quart);
+    &[data-ending-style] {
+      opacity: 0;
     }
 
-    &[data-activation-direction='left'] {
-      animation: navContentSlideFromLeft var(--duration-slow) var(--ease-out-quart);
+    &[data-starting-style][data-activation-direction='right'] {
+      opacity: 0;
+      transform: translateX(50%);
     }
 
-    &[data-activation-direction='up'] {
-      animation: navContentSlideFromUp var(--duration-slow) var(--ease-out-quart);
+    &[data-starting-style][data-activation-direction='left'] {
+      opacity: 0;
+      transform: translateX(-50%);
     }
 
-    &[data-activation-direction='down'] {
-      animation: navContentSlideFromDown var(--duration-slow) var(--ease-out-quart);
+    &[data-starting-style][data-activation-direction='up'] {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+
+    &[data-starting-style][data-activation-direction='down'] {
+      opacity: 0;
+      transform: translateY(50%);
     }
   }
 
@@ -193,53 +218,5 @@
       border: 1px solid var(--color-border);
       transform: translate(-50%, 50%) rotate(45deg);
     }
-  }
-}
-
-@keyframes navContentSlideFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(var(--space-4));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes navContentSlideFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(calc(var(--space-4) * -1));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes navContentSlideFromUp {
-  from {
-    opacity: 0;
-    transform: translateY(calc(var(--space-4) * -1));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes navContentSlideFromDown {
-  from {
-    opacity: 0;
-    transform: translateY(var(--space-4));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
