@@ -45,9 +45,9 @@
     transition:
       scale 400ms var(--ease-out-quart),
       translate 400ms var(--ease-out-quart),
+      transform 400ms var(--ease-out-quart),
       opacity 250ms var(--ease-out-quart);
 
-    /* Type accent colour — inherited by children via CSS cascade */
     &[data-type='success'] {
       --accent: var(--color-success);
     }
@@ -97,7 +97,6 @@
       animation: toast-swipe-exit 400ms var(--ease-out-quart) forwards;
     }
 
-    /* While being swiped, disable transition so it tracks the gesture */
     &[data-swiping] {
       transition: none;
     }
