@@ -6,7 +6,6 @@
     align-items: center;
     gap: var(--space-2);
 
-    // Slot size and font size are inherited by .input via CSS custom properties
     --otp-slot-size: var(--control-height-md);
     --otp-font-size: var(--font-size-base);
 
@@ -49,12 +48,8 @@
       border-color: var(--color-primary);
     }
 
-    &[data-filled]:not([data-complete]) {
+    &[data-filled] {
       border-color: var(--color-border-strong);
-    }
-
-    &[data-complete] {
-      border-color: var(--color-success);
     }
 
     &[data-invalid] {
