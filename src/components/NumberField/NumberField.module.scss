@@ -62,6 +62,7 @@
 
     &::placeholder {
       color: var(--color-fg-subtle);
+      unicode-bidi: plaintext;
     }
 
     &:disabled {

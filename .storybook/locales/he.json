@@ -211,6 +211,12 @@
   "collapsible": {
     "recoveryKeys": "מפתחות שחזור"
   },
+  "autocomplete": {
+    "searchFruits": "חפש פירות…",
+    "searchProduce": "חפש תוצרת…",
+    "noResultsFound": "לא נמצאו תוצאות.",
+    "placeholderSize": "{{size}} — חפש פרי"
+  },
   "combobox": {
     "chooseAFruit": "בחר פרי…",
     "searchProduce": "חפש תוצרת…",
