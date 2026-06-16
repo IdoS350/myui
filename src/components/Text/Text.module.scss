@@ -1,0 +1,109 @@
+@use '@/theme/mixins' as *;
+
+@layer components {
+  .text {
+    font-family: var(--font-sans);
+    margin: 0;
+
+    // Sizes
+    &[data-size='xs'] {
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-normal);
+    }
+
+    &[data-size='sm'] {
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-normal);
+    }
+
+    &[data-size='base'] {
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+    }
+
+    &[data-size='lg'] {
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-snug);
+    }
+
+    &[data-size='xl'] {
+      font-size: var(--font-size-xl);
+      line-height: var(--line-height-snug);
+    }
+
+    &[data-size='2xl'] {
+      font-size: var(--font-size-2xl);
+      line-height: var(--line-height-tight);
+    }
+
+    &[data-size='3xl'] {
+      font-size: var(--font-size-3xl);
+      line-height: var(--line-height-tight);
+    }
+
+    &[data-size='4xl'] {
+      font-size: var(--font-size-4xl);
+      line-height: var(--line-height-tight);
+    }
+
+    // Variants
+    &[data-variant='body'] {
+      font-weight: var(--font-weight-normal);
+      letter-spacing: var(--letter-spacing-normal);
+    }
+
+    &[data-variant='label'] {
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--letter-spacing-wide);
+    }
+
+    &[data-variant='heading'] {
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    &[data-variant='caption'] {
+      font-weight: var(--font-weight-normal);
+      letter-spacing: var(--letter-spacing-normal);
+    }
+
+    &[data-variant='code'] {
+      font-family: var(--font-mono);
+      font-weight: var(--font-weight-normal);
+      letter-spacing: var(--letter-spacing-normal);
+    }
+
+    // Colors
+    &[data-color='default'] {
+      color: var(--color-fg);
+    }
+
+    &[data-color='muted'] {
+      color: var(--color-fg-muted);
+    }
+
+    &[data-color='subtle'] {
+      color: var(--color-fg-subtle);
+    }
+
+    &[data-color='primary'] {
+      color: var(--color-primary);
+    }
+
+    &[data-color='danger'] {
+      color: var(--color-danger);
+    }
+
+    &[data-color='success'] {
+      color: var(--color-success);
+    }
+
+    &[data-color='warning'] {
+      color: var(--color-warning);
+    }
+  }
+
+  .truncate {
+    @include truncate;
+  }
+}
