@@ -410,6 +410,13 @@
     "endSlot": "חריץ סוף",
     "bothSlots": "שני חריצים"
   },
+  "otpField": {
+    "label": "קוד אימות",
+    "enterCode": "הכנס קוד בן 6 ספרות",
+    "masked": "מוסתר",
+    "withSeparator": "עם מפריד",
+    "alphanumeric": "אלפנומרי"
+  },
   "kbd": {
     "save": "שמור",
     "cancel": "ביטול",

@@ -1,0 +1,82 @@
+@use '@/theme/mixins' as *;
+
+@layer components {
+  .root {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    --otp-slot-size: var(--control-height-md);
+    --otp-font-size: var(--font-size-base);
+
+    &[data-size='sm'] {
+      gap: var(--space-1);
+      --otp-slot-size: var(--control-height-sm);
+      --otp-font-size: var(--font-size-sm);
+    }
+
+    &[data-size='lg'] {
+      gap: var(--space-3);
+      --otp-slot-size: var(--control-height-lg);
+      --otp-font-size: var(--font-size-lg);
+    }
+  }
+
+  .input {
+    width: var(--otp-slot-size, var(--control-height-md));
+    height: var(--otp-slot-size, var(--control-height-md));
+    flex-shrink: 0;
+    padding: 0;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-mono);
+    font-size: var(--otp-font-size, var(--font-size-base));
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    outline: none;
+    caret-color: var(--color-primary);
+    transition:
+      border-color var(--duration-fast) var(--ease-out-quart),
+      box-shadow var(--duration-fast) var(--ease-out-quart);
+
+    &:focus {
+      @include focus-ring(-1px);
+      border-color: var(--color-primary);
+    }
+
+    &[data-filled] {
+      border-color: var(--color-border-strong);
+    }
+
+    &[data-invalid] {
+      border-color: var(--color-danger);
+
+      &:focus {
+        outline-color: var(--color-danger);
+        border-color: var(--color-danger);
+      }
+    }
+
+    &[data-disabled] {
+      background: var(--color-disabled-bg);
+      border-color: var(--color-disabled-border);
+      color: var(--color-disabled-fg);
+      cursor: not-allowed;
+    }
+  }
+
+  .separator {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--color-fg-subtle);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    user-select: none;
+    padding-inline: var(--space-1);
+  }
+}
