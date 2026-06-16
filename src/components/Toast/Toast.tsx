@@ -1,3 +1,4 @@
+import { useDirection } from '@base-ui/react/direction-provider'
 import { clsx } from 'clsx'
 import { AlertTriangle, CircleCheck, Info, X, XCircle } from 'lucide-react'
 import React from 'react'
@@ -44,9 +45,13 @@ function getTypeIcon(type: string | undefined) {
 }
 
 function DefaultViewportToast({ toast }: { toast: AnyToast }) {
+  const dir = useDirection()
   const icon = getTypeIcon(toast.type as string | undefined)
   return (
-    <Primitives.Root toast={toast}>
+    <Primitives.Root
+      toast={toast}
+      swipeDirection={dir === 'rtl' ? ['down', 'left'] : ['down', 'right']}
+    >
       <Primitives.Content>
         {icon != null && <span className={styles.icon}>{icon}</span>}
         <div className={styles.body}>
