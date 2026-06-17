@@ -51,3 +51,16 @@ Add the myui registry to your `components.json`:
 ```bash
 pnpm dlx shadcn@latest add @myui/<component-name>
 ```
+
+## 5. Viewport meta (mobile keyboard support)
+
+Components that anchor to the screen edge on mobile (e.g. [Drawer](?path=/docs/components-drawer--docs)) rely on `position: fixed` + `dvh`/`vh` sizing, which browsers compute against the layout viewport. By default that viewport stays static when the on-screen keyboard opens, so a fixed-position drawer can end up covered by the keyboard.
+
+Add `interactive-widget=resizes-content` to your viewport `<meta>` tag so the layout viewport itself shrinks when the keyboard opens (Chrome 108+, Safari 17.4+):
+
+```html
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, interactive-widget=resizes-content"
+/>
+```
