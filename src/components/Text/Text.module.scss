@@ -73,6 +73,23 @@
       letter-spacing: var(--letter-spacing-normal);
     }
 
+    // Weight
+    &[data-weight='normal'] {
+      font-weight: var(--font-weight-normal);
+    }
+
+    &[data-weight='medium'] {
+      font-weight: var(--font-weight-medium);
+    }
+
+    &[data-weight='semibold'] {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &[data-weight='bold'] {
+      font-weight: var(--font-weight-bold);
+    }
+
     // Colors
     &[data-color='default'] {
       color: var(--color-fg);
@@ -101,9 +118,9 @@
     &[data-color='warning'] {
       color: var(--color-warning);
     }
-  }
 
-  .truncate {
-    @include truncate;
+    &[data-truncate='true'] {
+      @include truncate;
+    }
   }
 }
