@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { X } from 'lucide-react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button/Button'
@@ -475,7 +476,9 @@ export const Flat: Story = {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>{t('drawer.filters')}</DrawerTitle>
-            <DrawerClose variant='ghost'>{t('common.close')}</DrawerClose>
+            <DrawerClose variant='ghost' size='icon-sm'>
+              <X size='1.25rem' />
+            </DrawerClose>
           </DrawerHeader>
           <DrawerBody>
             <DrawerDescription>{t('drawer.filtersDesc')}</DrawerDescription>

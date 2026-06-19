@@ -1,3 +1,9 @@
+## [1.0.1] - 2026-06-19
+
+### Changed
+
+- Updated to Base UI v1.6.0 — internal import renamed from `OTPFieldPreview` to `OTPField` (`@base-ui/react/otp-field`); no public API change
+
 ## [1.0.0] - 2026-06-16
 
 ### Added

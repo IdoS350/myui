@@ -1,4 +1,4 @@
-import { OTPFieldPreview as BaseOTPField } from '@base-ui/react/otp-field'
+import { OTPField as BaseOTPField } from '@base-ui/react/otp-field'
 import Primitives from './primitives'
 
 export type { OTPFieldInputProps, OTPFieldRootProps } from '@base-ui/react/otp-field'

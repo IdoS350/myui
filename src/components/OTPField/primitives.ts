@@ -1,5 +1,5 @@
 import { styled } from '@/utilities/styled'
-import { OTPFieldPreview as BaseOTPField } from '@base-ui/react/otp-field'
+import { OTPField as BaseOTPField } from '@base-ui/react/otp-field'
 import styles from './OTPField.module.scss'
 
 export default {

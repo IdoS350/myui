@@ -98,18 +98,20 @@ function DrawerContent({
   const { hasSnapPoints, side, variant } = React.use(DrawerContext)
 
   return (
-    <Primitives.Portal>
-      <Primitives.Backdrop {...backdropProps} />
-      <Primitives.Viewport data-side={side} {...viewportProps}>
-        <Primitives.Popup
-          className={clsx(hasSnapPoints && styles.snapPopup)}
-          data-variant={variant}
-          {...popupProps}
-        >
-          {children}
-        </Primitives.Popup>
-      </Primitives.Viewport>
-    </Primitives.Portal>
+    <Primitives.VirtualKeyboardProvider>
+      <Primitives.Portal>
+        <Primitives.Backdrop {...backdropProps} />
+        <Primitives.Viewport data-side={side} {...viewportProps}>
+          <Primitives.Popup
+            className={clsx(hasSnapPoints && styles.snapPopup)}
+            data-variant={variant}
+            {...popupProps}
+          >
+            {children}
+          </Primitives.Popup>
+        </Primitives.Viewport>
+      </Primitives.Portal>
+    </Primitives.VirtualKeyboardProvider>
   )
 }
 
