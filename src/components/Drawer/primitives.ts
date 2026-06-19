@@ -5,6 +5,7 @@ import styles from './Drawer.module.scss'
 export default {
   Root: BaseDrawer.Root,
   Provider: BaseDrawer.Provider,
+  VirtualKeyboardProvider: BaseDrawer.VirtualKeyboardProvider,
   Portal: BaseDrawer.Portal,
   Backdrop: styled(BaseDrawer.Backdrop, styles.backdrop),
   Viewport: styled(BaseDrawer.Viewport, styles.viewport),

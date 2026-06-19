@@ -6,12 +6,6 @@ import React from 'react'
 import styles from './Drawer.module.scss'
 import Primitives from './primitives'
 
-// For the drawer to move clear of the on-screen keyboard on mobile, the
-// consuming app's viewport <meta> tag needs interactive-widget=resizes-content
-// (e.g. <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />).
-// Without it, browsers keep the layout viewport static when the keyboard opens, so
-// the position: fixed + dvh/vh sizing below won't react to it.
-
 export type DrawerSide = 'bottom' | 'top' | 'left' | 'right'
 export type DrawerSnapPoint = BaseDrawer.Root.SnapPoint
 export type DrawerVariant = 'default' | 'flat'
@@ -104,18 +98,20 @@ function DrawerContent({
   const { hasSnapPoints, side, variant } = React.use(DrawerContext)
 
   return (
-    <Primitives.Portal>
-      <Primitives.Backdrop {...backdropProps} />
-      <Primitives.Viewport data-side={side} {...viewportProps}>
-        <Primitives.Popup
-          className={clsx(hasSnapPoints && styles.snapPopup)}
-          data-variant={variant}
-          {...popupProps}
-        >
-          {children}
-        </Primitives.Popup>
-      </Primitives.Viewport>
-    </Primitives.Portal>
+    <Primitives.VirtualKeyboardProvider>
+      <Primitives.Portal>
+        <Primitives.Backdrop {...backdropProps} />
+        <Primitives.Viewport data-side={side} {...viewportProps}>
+          <Primitives.Popup
+            className={clsx(hasSnapPoints && styles.snapPopup)}
+            data-variant={variant}
+            {...popupProps}
+          >
+            {children}
+          </Primitives.Popup>
+        </Primitives.Viewport>
+      </Primitives.Portal>
+    </Primitives.VirtualKeyboardProvider>
   )
 }
 
