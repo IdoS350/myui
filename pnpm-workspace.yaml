@@ -3,6 +3,10 @@ packages:
 
 minimumReleaseAge: 7200 # 5 days in minutes
 
+minimumReleaseAgeExclude:
+  - '@base-ui/react'
+  - '@base-ui/utils'
+
 ignoreWorkspaceRootCheck: true
 
 allowBuilds:
