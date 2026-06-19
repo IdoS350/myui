@@ -36,3 +36,4 @@ public/r
 # Agent files
 .claude/worktrees/
 .agent/worktrees/
+.claude/settings.local.json
