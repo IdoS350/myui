@@ -27,6 +27,11 @@ export default {
       description: 'Text color token',
       table: { defaultValue: { summary: 'default' } },
     },
+    weight: {
+      control: 'select',
+      options: ['normal', 'medium', 'semibold', 'bold'],
+      description: 'Font weight override',
+    },
     truncate: {
       control: 'boolean',
       description: 'Truncate with ellipsis',
@@ -119,6 +124,21 @@ export const AllVariants: Story = {
         <Text variant='code' size='sm' as='code'>
           const x = 1
         </Text>
+      </div>
+    )
+  },
+}
+
+export const Weights: Story = {
+  render: function Weights() {
+    const weights = ['normal', 'medium', 'semibold', 'bold'] as const
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+        {weights.map((weight) => (
+          <Text key={weight} weight={weight}>
+            {weight} — The quick brown fox
+          </Text>
+        ))}
       </div>
     )
   },
