@@ -6,7 +6,7 @@ description: >
   about the myui component library, distributed via the shadcn registry, not npm). For CONSUMERS who
   installed myui into their own app via the shadcn CLI — not for developing myui itself. Never
   recommends npm install, workspace-linking, or publishing myui — there is no npm package. Covers:
-  shadcn CLI install (`pnpm dlx shadcn@latest add @myui/component-name`), components.json setup,
+  shadcn CLI install (`pnpm dlx shadcn@latest add idos350/myui/component-name`), components.json setup,
   CSS tokens in src/theme/colors.scss, dark mode via ThemeProvider/useTheme(), RTL via
   DirectionProvider, and updating installed components with --diff + CHANGELOG review. Also trigger
   for "add the button from myui" or "the @myui select component" without the word itself.
@@ -27,8 +27,15 @@ workspace-linking myui as a local package, and nothing to publish — the shadcn
 
 ## 1. Project Setup
 
-Before adding any components, your project needs two things: the `@/` path alias (required by all myui
-imports) and a `components.json` pointing at the myui registry.
+Before adding any components, your project needs the `@/` path alias (required by all myui imports)
+and a `components.json` file (the shadcn CLI creates this automatically the first time you run `add`,
+if it isn't already present).
+
+myui is consumed as a **GitHub source**, not a registered registry namespace — there's no separate
+registry URL to add to `components.json`. The shadcn CLI resolves `idos350/myui/<component-name>`
+directly from the GitHub repo. Because it's a third-party source, the CLI will show you exactly what
+it's about to fetch and write before doing so — review that output before confirming, the same way
+you'd review any other external dependency.
 
 **`tsconfig.json`**
 
@@ -65,9 +72,6 @@ export default {
   "aliases": {
     "components": "@/components",
     "utils": "@/utilities"
-  },
-  "registries": {
-    "@myui": "https://idos350.github.io/myui/r/{name}.json"
   }
 }
 ```
@@ -95,11 +99,16 @@ import { DirectionProvider } from '@base-ui/react/direction-provider'
 ## 2. Adding Components
 
 ```bash
-pnpm dlx shadcn@latest add @myui/<component-name>
+pnpm dlx shadcn@latest add idos350/myui/<component-name>
 ```
 
-Replace `<component-name>` with the lowercase name, e.g. `button`, `select`, `dialog`. The full
-component list is available at the myui registry (`https://idos350.github.io/myui`).
+Replace `<component-name>` with the lowercase name, e.g. `button`, `select`, `dialog`. To see the full
+list of available components, search the source directly through the shadcn CLI rather than visiting
+a separate URL:
+
+```bash
+pnpm dlx shadcn@latest search idos350/myui
+```
 
 The CLI copies the component source files into your `src/components/` folder — you own them from
 this point and can edit them freely.
@@ -267,14 +276,14 @@ from memory.
 **Step 1 — see what the registry changed:**
 
 ```bash
-pnpm dlx shadcn@latest add @myui/<component-name> --diff
+pnpm dlx shadcn@latest add idos350/myui/<component-name> --diff
 ```
 
 This prints a diff of what would change without touching your files. Note: `--diff` shows only
 the top 5 changed files. If you've also modified theme files or other related files, scope it:
 
 ```bash
-pnpm dlx shadcn@latest add @myui/<component-name> --diff src/components/<Name>
+pnpm dlx shadcn@latest add idos350/myui/<component-name> --diff src/components/<Name>
 ```
 
 **Step 2 — read the CHANGELOG:**
