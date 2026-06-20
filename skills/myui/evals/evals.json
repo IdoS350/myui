@@ -1,0 +1,73 @@
+{
+  "skill_name": "myui",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm starting a new Vite + React + TypeScript app and I want to use myui. Walk me through the full setup — the path alias config, adding the registry, and installing the Select component.",
+      "expected_output": "Step-by-step setup instructions: tsconfig.json @/ alias, vite.config.ts alias, full components.json (no tailwind fields), then the shadcn CLI add command for select. Mention DirectionProvider for RTL.",
+      "files": [],
+      "assertions": [
+        { "text": "Shows tsconfig.json with @/* path mapping" },
+        { "text": "Shows vite.config.ts alias configuration" },
+        {
+          "text": "Includes the correct myui registry URL (idos350.github.io/myui) in components.json"
+        },
+        {
+          "text": "Shows a complete components.json with aliases block (not just the registries key)"
+        },
+        { "text": "Mentions DirectionProvider for RTL support" },
+        { "text": "Shows correct shadcn CLI add command for select (@myui/select)" }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "My app uses myui and I need to change the brand color from blue to a warm orange. What's the right way to do this?",
+      "expected_output": "Edit src/theme/colors.scss directly to change --color-primary and related tokens. Show OKLCH values. Handle dark mode variant too.",
+      "files": [],
+      "assertions": [
+        { "text": "Directs the user to edit src/theme/colors.scss" },
+        { "text": "Overrides --color-primary token" },
+        { "text": "Also overrides --color-primary-hover" },
+        { "text": "Mentions oklch color format" },
+        { "text": "Includes a dark mode variant (data-theme='dark' block or equivalent)" }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I added a myui Select to my app and it works, but I realized I'm importing from the primitives file. My linter is also flagging a relative import. Can you fix my import?",
+      "expected_output": "Replace import from primitives.ts with import from Select.tsx using @/ alias. Explain that primitives.ts is reserved for advanced composition, not normal usage.",
+      "files": [],
+      "assertions": [
+        { "text": "Shows corrected import from @/components/Select/Select" },
+        { "text": "Explains primitives.ts is for internal/advanced use, not general imports" },
+        { "text": "Uses @/ alias (not a relative ../ path)" },
+        { "text": "Does not recommend importing from primitives.ts for normal usage" }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to add a dark/light mode toggle to my myui app. How do I set up the ThemeProvider and wire up a toggle button?",
+      "expected_output": "Wrap app in ThemeProvider from @/theme/useTheme. Show useTheme() with setTheme/resolved. Toggle button example. Mention data-theme or localStorage.",
+      "files": [],
+      "assertions": [
+        { "text": "Mentions or imports ThemeProvider" },
+        { "text": "Shows app wrapped in <ThemeProvider>" },
+        { "text": "Uses useTheme() hook" },
+        { "text": "Shows setTheme usage" },
+        { "text": "Mentions resolved property or data-theme attribute" }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I've customized the Button component in my app (rounded corners, different padding). Now myui released a new version of Button. How do I update without losing my changes?",
+      "expected_output": "Use --diff flag first to preview changes, check CHANGELOG.md to understand what changed, then run shadcn add to apply. Help the user re-apply their local customizations after.",
+      "files": [],
+      "assertions": [
+        { "text": "Uses the --diff flag to preview changes before overwriting" },
+        { "text": "Mentions checking src/components/Button/CHANGELOG.md" },
+        { "text": "Gives the shadcn add @myui/button command to apply the update" },
+        { "text": "Advises reviewing/re-applying local customizations after the update" }
+      ]
+    }
+  ]
+}

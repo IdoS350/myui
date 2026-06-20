@@ -1,0 +1,28 @@
+[
+  { "query": "I want to add the Button component from myui to my app", "should_trigger": true },
+  { "query": "How do I install @myui/select?", "should_trigger": true },
+  { "query": "What's the registry URL for myui?", "should_trigger": true },
+  { "query": "How do I change the brand color in myui?", "should_trigger": true },
+  { "query": "How do I set up dark mode with myui?", "should_trigger": true },
+  {
+    "query": "I keep getting an error importing from the primitives file in myui",
+    "should_trigger": true
+  },
+  { "query": "How do I update a myui component I've already installed?", "should_trigger": true },
+  { "query": "What components does myui have?", "should_trigger": true },
+  { "query": "How do I use ThemeProvider from myui?", "should_trigger": true },
+  {
+    "query": "My myui Button has the wrong border radius, how do I change it?",
+    "should_trigger": true
+  },
+  { "query": "Can you add the dialog from @myui to my project?", "should_trigger": true },
+  { "query": "How do I override --color-primary in myui?", "should_trigger": true },
+  { "query": "Where is the myui DirectionProvider docs?", "should_trigger": true },
+  { "query": "component keeps importing from primitives, is that ok?", "should_trigger": true },
+  { "query": "how do I add the button from myui", "should_trigger": true },
+  { "query": "How do I build a React to-do list app?", "should_trigger": false },
+  { "query": "What's the difference between useState and useReducer?", "should_trigger": false },
+  { "query": "How do I set up Tailwind CSS in a Vite project?", "should_trigger": false },
+  { "query": "How do I center a div in CSS?", "should_trigger": false },
+  { "query": "Can you help me write a custom React hook for debouncing?", "should_trigger": false }
+]
