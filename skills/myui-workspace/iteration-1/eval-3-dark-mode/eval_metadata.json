@@ -1,6 +1,0 @@
-{
-  "eval_id": 3,
-  "eval_name": "dark-mode-toggle-setup",
-  "prompt": "I want to add a dark/light mode toggle to my myui app. How do I set up the ThemeProvider and wire up a toggle button?",
-  "assertions": []
-}

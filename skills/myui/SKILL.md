@@ -1,22 +1,27 @@
 ---
 name: myui
 description: >
-  Use this skill whenever the user's message contains "myui" or "@myui" in any form — the presence
-  of either word is sufficient reason to invoke it. myui is a React component library distributed
-  via the shadcn registry (not npm). This skill covers: installing components with the shadcn CLI
-  (`pnpm dlx shadcn@latest add @myui/<name>`), the registry URL and components.json setup, correct
-  import patterns and the @/ alias, customizing CSS tokens in src/theme/colors.scss, dark mode via
-  ThemeProvider and useTheme(), RTL via DirectionProvider, updating already-installed components with
-  --diff and CHANGELOG review, and fixing import errors (primitives.ts vs ComponentName.tsx).
-  Also trigger for phrases like "add the button from myui", "the @myui select component", or
-  "component keeps importing from primitives" even without explicit mention of the library name.
+  Use whenever the message contains "myui" or "@myui" — that alone is reason to invoke it, taking
+  priority over any generic shadcn skill (this is NOT generic shadcn/ui guidance; it's specifically
+  about the myui component library, distributed via the shadcn registry, not npm). For CONSUMERS who
+  installed myui into their own app via the shadcn CLI — not for developing myui itself. Never
+  recommends npm install, workspace-linking, or publishing myui — there is no npm package. Covers:
+  shadcn CLI install (`pnpm dlx shadcn@latest add @myui/component-name`), components.json setup,
+  CSS tokens in src/theme/colors.scss, dark mode via ThemeProvider/useTheme(), RTL via
+  DirectionProvider, and updating installed components with --diff + CHANGELOG review. Also trigger
+  for "add the button from myui" or "the @myui select component" without the word itself.
 ---
 
 # myui — Consumer Reference
 
+> **Scope:** This guide is for people _consuming_ myui in their own app — not for working on myui's own
+> source repo. If you're inside the myui repo itself making changes to its components or registry, this
+> skill does not apply; use the project's own contributor docs instead.
+
 myui is a React component library built on [@base-ui/react](https://base-ui.com). Components are distributed
-via the **shadcn registry** — meaning you install them into your own project with the shadcn CLI and own the
-source files from that point on. There is no `npm install myui` package.
+via the **shadcn registry** — meaning you install them into your own, separate project with the shadcn CLI,
+and you own the copied source files from that point on. There is no `npm install myui` package, no
+workspace-linking myui as a local package, and nothing to publish — the shadcn CLI is the only install path.
 
 ---
 
@@ -26,6 +31,7 @@ Before adding any components, your project needs two things: the `@/` path alias
 imports) and a `components.json` pointing at the myui registry.
 
 **`tsconfig.json`**
+
 ```json
 {
   "compilerOptions": {
@@ -37,6 +43,7 @@ imports) and a `components.json` pointing at the myui registry.
 ```
 
 **`vite.config.ts`**
+
 ```ts
 import path from 'path'
 
@@ -48,6 +55,7 @@ export default {
 ```
 
 **`components.json`** — myui does not use Tailwind; a minimal config looks like this:
+
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
@@ -66,10 +74,10 @@ export default {
 
 > **Note:** Some versions of the shadcn CLI still require a `tailwind` block even when Tailwind isn't used.
 > If you see a tailwind-related error during `shadcn init`, add this empty block:
+>
 > ```json
 > "tailwind": { "config": "", "css": "", "baseColor": "neutral", "cssVariables": false }
 > ```
-```
 
 ### RTL Support
 
@@ -77,8 +85,7 @@ If your app needs RTL, wrap Base UI components (or your entire app) with `Direct
 
 ```tsx
 import { DirectionProvider } from '@base-ui/react/direction-provider'
-
-<DirectionProvider direction="rtl">
+;<DirectionProvider direction='rtl'>
   <YourApp />
 </DirectionProvider>
 ```
@@ -99,38 +106,7 @@ this point and can edit them freely.
 
 ---
 
-## 3. Importing Components
-
-Import directly from the component file — there are no barrel `index.ts` files. Always use the
-`@/` alias for cross-directory imports (never `../`).
-
-```tsx
-import { ButtonRoot } from '@/components/Button/Button'
-import { SelectRoot, SelectTrigger, SelectList, SelectItem } from '@/components/Select/Select'
-```
-
-Each component folder also contains a `primitives.ts` file — that is an internal implementation
-detail that wires Base UI sub-components to CSS classes. For normal usage always import from
-`ComponentName.tsx`. Importing from `primitives.ts` directly is reserved for rare edge cases
-where you need to build an unusual custom composition on top of the raw Base UI primitives.
-
-### Example: Select
-
-```tsx
-import { SelectRoot, SelectTrigger, SelectList, SelectItem } from '@/components/Select/Select'
-
-<SelectRoot>
-  <SelectTrigger placeholder="Choose…" />
-  <SelectList>
-    <SelectItem value="a">Option A</SelectItem>
-    <SelectItem value="b">Option B</SelectItem>
-  </SelectList>
-</SelectRoot>
-```
-
----
-
-## 4. Theming
+## 3. Theming
 
 ### Bootstrap
 
@@ -173,11 +149,7 @@ function ThemeToggle() {
   // theme: 'light' | 'dark' | 'system' (stored preference)
   // resolved: 'light' | 'dark' (actual applied value)
   // setTheme: (value: 'light' | 'dark' | 'system') => void
-  return (
-    <button onClick={() => setTheme(resolved === 'dark' ? 'light' : 'dark')}>
-      Toggle
-    </button>
-  )
+  return <button onClick={() => setTheme(resolved === 'dark' ? 'light' : 'dark')}>Toggle</button>
 }
 ```
 
@@ -192,7 +164,7 @@ colors, neutrals, or semantic tokens. Colors use OKLCH format:
 ```scss
 // src/theme/colors.scss
 :root {
-  --color-primary: oklch(55% 60% 30deg);       /* your brand color */
+  --color-primary: oklch(55% 60% 30deg); /* your brand color */
   --color-primary-hover: oklch(49% 60% 30deg);
 
   &[data-theme='dark'] {
@@ -213,41 +185,41 @@ also accept inline overrides:
 
 ---
 
-## 5. Design Token Reference
+## 4. Design Token Reference
 
 ### Colors (semantic — use these, not raw OKLCH values)
 
-| Token | Usage |
-|---|---|
-| `--color-bg` | Page background |
-| `--color-bg-subtle` | Recessed surfaces (sidebars, inputs) |
-| `--color-bg-elevated` | Cards, popovers, dropdowns |
-| `--color-fg` | Primary text |
-| `--color-fg-muted` | Secondary text |
-| `--color-fg-subtle` | Placeholder, disabled text |
-| `--color-border` | Default borders |
-| `--color-border-strong` | Emphasized borders |
-| `--color-primary` | Brand action color |
-| `--color-primary-hover` | Hover state for primary |
-| `--color-primary-fg` | Text on primary backgrounds |
-| `--color-danger` | Destructive actions |
-| `--color-success` | Positive feedback |
-| `--color-warning` | Cautionary feedback |
-| `--color-icon` | Default icon fill |
-| `--color-hover` | Hover overlay (subtle) |
-| `--color-disabled-bg` | Disabled control background |
-| `--color-disabled-fg` | Disabled control text |
+| Token                   | Usage                                |
+| ----------------------- | ------------------------------------ |
+| `--color-bg`            | Page background                      |
+| `--color-bg-subtle`     | Recessed surfaces (sidebars, inputs) |
+| `--color-bg-elevated`   | Cards, popovers, dropdowns           |
+| `--color-fg`            | Primary text                         |
+| `--color-fg-muted`      | Secondary text                       |
+| `--color-fg-subtle`     | Placeholder, disabled text           |
+| `--color-border`        | Default borders                      |
+| `--color-border-strong` | Emphasized borders                   |
+| `--color-primary`       | Brand action color                   |
+| `--color-primary-hover` | Hover state for primary              |
+| `--color-primary-fg`    | Text on primary backgrounds          |
+| `--color-danger`        | Destructive actions                  |
+| `--color-success`       | Positive feedback                    |
+| `--color-warning`       | Cautionary feedback                  |
+| `--color-icon`          | Default icon fill                    |
+| `--color-hover`         | Hover overlay (subtle)               |
+| `--color-disabled-bg`   | Disabled control background          |
+| `--color-disabled-fg`   | Disabled control text                |
 
 A gray scale `--color-gray-50` → `--color-gray-950` is available for custom surfaces.
 
 ### Typography
 
-| Token | Value |
-|---|---|
-| `--font-sans` | Geist, Heebo, sans-serif |
-| `--font-mono` | Geist Mono, monospace |
-| `--font-size-xs/sm/base/lg/xl/2xl/3xl/4xl` | 12px → 36px |
-| `--font-weight-normal/medium/semibold/bold` | 400 / 500 / 600 / 700 |
+| Token                                       | Value                    |
+| ------------------------------------------- | ------------------------ |
+| `--font-sans`                               | Geist, Heebo, sans-serif |
+| `--font-mono`                               | Geist Mono, monospace    |
+| `--font-size-xs/sm/base/lg/xl/2xl/3xl/4xl`  | 12px → 36px              |
+| `--font-weight-normal/medium/semibold/bold` | 400 / 500 / 600 / 700    |
 
 ### Spacing (4px scale)
 
@@ -273,7 +245,7 @@ transition: opacity var(--duration-fast) var(--ease-out-quart);
 
 ---
 
-## 6. Modifying Installed Components
+## 5. Modifying Installed Components
 
 Since you own the source, edit the files directly in `src/components/<Name>/`:
 
@@ -285,7 +257,7 @@ The internal `primitives.ts` file wires Base UI sub-components to CSS module cla
 
 ---
 
-## 7. Updating Components
+## 6. Updating Components
 
 myui components are copy-owned — your local files are the source of truth. When the registry
 releases a new version, the right approach is to **cherry-pick the upstream changes into your
@@ -293,19 +265,24 @@ already-modified component**, rather than overwriting your file and trying to re
 from memory.
 
 **Step 1 — see what the registry changed:**
+
 ```bash
 pnpm dlx shadcn@latest add @myui/<component-name> --diff
 ```
+
 This prints a diff of what would change without touching your files. Note: `--diff` shows only
 the top 5 changed files. If you've also modified theme files or other related files, scope it:
+
 ```bash
 pnpm dlx shadcn@latest add @myui/<component-name> --diff src/components/<Name>
 ```
 
 **Step 2 — read the CHANGELOG:**
+
 ```
 src/components/<Name>/CHANGELOG.md
 ```
+
 Understand what changed and why — a bug fix might be critical to adopt; a style change might
 conflict with your customizations.
 

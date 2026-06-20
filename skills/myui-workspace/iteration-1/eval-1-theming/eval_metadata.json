@@ -1,6 +1,0 @@
-{
-  "eval_id": 1,
-  "eval_name": "brand-color-override",
-  "prompt": "My app uses myui and I need to change the brand color from blue to a warm orange. What's the right way to do this without touching the component source files?",
-  "assertions": []
-}
