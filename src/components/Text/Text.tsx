@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import styles from './Text.module.scss'
 
 export type TextVariant = 'body' | 'label' | 'heading' | 'caption' | 'code'
-export type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 export type TextColor =
   | 'default'
   | 'muted'
@@ -12,21 +11,25 @@ export type TextColor =
   | 'success'
   | 'warning'
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold'
+export type TextAlign = 'start' | 'center' | 'end' | 'justify'
+export type TextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty'
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TextVariant
-  size?: TextSize
   color?: TextColor
   weight?: TextWeight
+  align?: TextAlign
+  wrap?: TextWrap
   as?: React.ElementType
   truncate?: boolean
 }
 
 export function Text({
   variant = 'body',
-  size = 'base',
   color = 'default',
   weight,
+  align,
+  wrap,
   as: Tag = 'p',
   truncate,
   className,
@@ -37,9 +40,10 @@ export function Text({
     <Tag
       className={clsx(styles.text, className)}
       data-variant={variant}
-      data-size={size}
       data-color={color}
       data-weight={weight}
+      data-align={align}
+      data-wrap={wrap}
       data-truncate={truncate || undefined}
       {...props}
     >
