@@ -15,12 +15,6 @@ export default {
       description: 'Typographic role',
       table: { defaultValue: { summary: 'body' } },
     },
-    size: {
-      control: 'select',
-      options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'],
-      description: 'Font size',
-      table: { defaultValue: { summary: 'base' } },
-    },
     color: {
       control: 'select',
       options: ['default', 'muted', 'subtle', 'primary', 'danger', 'success', 'warning'],
@@ -31,6 +25,16 @@ export default {
       control: 'select',
       options: ['normal', 'medium', 'semibold', 'bold'],
       description: 'Font weight override',
+    },
+    align: {
+      control: 'select',
+      options: ['start', 'center', 'end', 'justify'],
+      description: 'Text alignment',
+    },
+    wrap: {
+      control: 'select',
+      options: ['wrap', 'nowrap', 'balance', 'pretty'],
+      description: 'CSS text-wrap behavior',
     },
     truncate: {
       control: 'boolean',
@@ -59,7 +63,6 @@ export const Primary: Story = {
 export const Heading: Story = {
   args: {
     variant: 'heading',
-    size: '3xl',
     children: 'Page title',
     as: 'h1',
   },
@@ -68,7 +71,6 @@ export const Heading: Story = {
 export const Label: Story = {
   args: {
     variant: 'label',
-    size: 'sm',
     children: 'Input label',
     as: 'span',
   },
@@ -77,7 +79,6 @@ export const Label: Story = {
 export const Caption: Story = {
   args: {
     variant: 'caption',
-    size: 'xs',
     color: 'muted',
     children: 'Helper text beneath a field.',
   },
@@ -86,24 +87,8 @@ export const Caption: Story = {
 export const Code: Story = {
   args: {
     variant: 'code',
-    size: 'sm',
     children: 'const answer = 42',
     as: 'code',
-  },
-}
-
-export const Sizes: Story = {
-  render: function Sizes() {
-    const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'] as const
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-        {sizes.map((size) => (
-          <Text key={size} size={size}>
-            {size} — The quick brown fox
-          </Text>
-        ))}
-      </div>
-    )
   },
 }
 
@@ -111,19 +96,34 @@ export const AllVariants: Story = {
   render: function AllVariants() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-        <Text variant='heading' size='2xl' as='h2'>
+        <Text variant='heading' as='h2'>
           Heading
         </Text>
         <Text variant='body'>Body — The quick brown fox jumps over the lazy dog.</Text>
-        <Text variant='label' size='sm' as='span'>
+        <Text variant='label' as='span'>
           Label
         </Text>
-        <Text variant='caption' size='xs' color='muted'>
+        <Text variant='caption' color='muted'>
           Caption — additional context
         </Text>
-        <Text variant='code' size='sm' as='code'>
+        <Text variant='code' as='code'>
           const x = 1
         </Text>
+      </div>
+    )
+  },
+}
+
+export const Align: Story = {
+  render: function Align() {
+    const aligns = ['start', 'center', 'end', 'justify'] as const
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', width: 280 }}>
+        {aligns.map((align) => (
+          <Text key={align} align={align}>
+            {align} — The quick brown fox jumps over the lazy dog.
+          </Text>
+        ))}
       </div>
     )
   },
@@ -139,6 +139,22 @@ export const Weights: Story = {
             {weight} — The quick brown fox
           </Text>
         ))}
+      </div>
+    )
+  },
+}
+
+export const Wrap: Story = {
+  render: function Wrap() {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', width: 240 }}>
+        <Text variant='heading' as='h2' wrap='balance'>
+          A heading that balances across multiple lines
+        </Text>
+        <Text wrap='pretty'>
+          Body text using pretty wrapping to avoid a lonely orphan word on the last line.
+        </Text>
+        <Text wrap='nowrap'>This line never wraps, no matter how long it gets.</Text>
       </div>
     )
   },
