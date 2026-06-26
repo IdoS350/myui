@@ -1,3 +1,14 @@
+## [1.0.2] - 2026-06-26
+
+### Changed
+
+- Replaced the local `isRtl()` helper (read `document.documentElement.dir`) with Base UI's `useDirection` hook from `@base-ui/react/direction-provider` — `Sidebar.tsx`
+
+### Fixed
+
+- Icon in the icon-collapsed menu button is now perfectly centered — the hidden label `<span>` was still occupying flex layout space and skewing the icon off-center, now hidden via `display: none` in that state — `Sidebar.module.scss`
+- Offcanvas sidebar content is no longer rendered while off-screen, so any internal state (inputs, etc.) resets on reopen instead of persisting — `Sidebar.tsx`
+
 ## [1.0.1] - 2026-06-26
 
 ### Fixed

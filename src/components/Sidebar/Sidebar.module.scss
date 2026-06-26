@@ -390,6 +390,10 @@
       block-size: var(--control-height-sm);
       padding: var(--space-2);
       justify-content: center;
+
+      & > span:last-child {
+        display: none;
+      }
     }
   }
 

@@ -17,6 +17,7 @@ import {
 } from '@/components/Tooltip/Tooltip'
 import { useControllableState } from '@/hooks/useControllableState'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useDirection } from '@base-ui/react/direction-provider'
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
 import clsx from 'clsx'
@@ -52,10 +53,6 @@ function useSidebar() {
     throw new Error('useSidebar must be used within a SidebarProvider.')
   }
   return context
-}
-
-function isRtl() {
-  return typeof document !== 'undefined' && document.documentElement.dir === 'rtl'
 }
 
 export interface SidebarProviderProps extends React.ComponentProps<'div'> {
@@ -132,8 +129,9 @@ function Sidebar({
   ...props
 }: SidebarProps) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
-  const rtl = isRtl()
+  const rtl = useDirection() === 'rtl'
   const collapsedAs = state === 'collapsed' ? collapsible : undefined
+  const isOffscreen = collapsedAs === 'offcanvas'
 
   if (collapsible === 'none') {
     return (
@@ -193,7 +191,7 @@ function Sidebar({
         style={style}
         {...props}
       >
-        <div className={styles.inner}>{children}</div>
+        <div className={styles.inner}>{!isOffscreen && children}</div>
       </div>
     </div>
   )
@@ -203,7 +201,7 @@ export type SidebarTriggerProps = ButtonProps
 
 function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
   const { toggleSidebar } = useSidebar()
-  const rtl = isRtl()
+  const rtl = useDirection() === 'rtl'
 
   return (
     <Button
@@ -224,7 +222,8 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
 
 function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
   const { toggleSidebar } = useSidebar()
-  const label = isRtl() ? 'הצג/הסתר סרגל צד' : 'Toggle Sidebar'
+  const rtl = useDirection() === 'rtl'
+  const label = rtl ? 'הצג/הסתר סרגל צד' : 'Toggle Sidebar'
 
   return (
     <button
