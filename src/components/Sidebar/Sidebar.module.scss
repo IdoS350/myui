@@ -243,7 +243,6 @@
     flex-direction: column;
     gap: var(--space-2);
     overflow: auto;
-    padding: var(--space-2);
 
     .root[data-collapsible='icon'] & {
       overflow: hidden;
@@ -389,7 +388,7 @@
     .root[data-collapsible='icon'] & {
       inline-size: var(--control-height-sm);
       block-size: var(--control-height-sm);
-      padding: 0;
+      padding: var(--space-2);
       justify-content: center;
     }
   }

@@ -18,10 +18,12 @@ function StoryWrapper({
   Story,
   theme,
   locale,
+  fullscreen,
 }: {
   Story: React.ComponentType
   theme: string
   locale: Locale
+  fullscreen: boolean
 }) {
   const dir = locale === 'he' ? 'rtl' : 'ltr'
 
@@ -56,7 +58,7 @@ function StoryWrapper({
           dir={dir}
           lang={locale}
           style={{
-            padding: '2rem',
+            padding: fullscreen ? 0 : '2rem',
             background: 'var(--color-bg)',
             color: 'var(--color-fg)',
           }}
@@ -112,7 +114,8 @@ function ThemedDocsContainer({ children, context }: React.PropsWithChildren<Docs
 const withThemeAndDir: Decorator = (Story, context) => {
   const theme = context.globals['theme'] === 'dark' ? 'dark' : 'light'
   const locale: Locale = context.globals['locale'] === 'he' ? 'he' : 'en'
-  return <StoryWrapper Story={Story} theme={theme} locale={locale} />
+  const fullscreen = context.parameters['layout'] === 'fullscreen'
+  return <StoryWrapper Story={Story} theme={theme} locale={locale} fullscreen={fullscreen} />
 }
 
 const preview: Preview = {
