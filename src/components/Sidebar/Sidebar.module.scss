@@ -37,7 +37,7 @@
     position: relative;
     inline-size: var(--sidebar-width);
     background-color: transparent;
-    transition: inline-size var(--duration-base) linear;
+    transition: inline-size var(--duration-base) var(--ease-in-out-quart);
 
     &[data-collapsible='offcanvas'] {
       inline-size: 0;
@@ -61,9 +61,9 @@
     block-size: 100vh;
     inline-size: var(--sidebar-width);
     transition:
-      inset-inline-start var(--duration-base) linear,
-      inset-inline-end var(--duration-base) linear,
-      inline-size var(--duration-base) linear;
+      inset-inline-start var(--duration-base) var(--ease-in-out-quart),
+      inset-inline-end var(--duration-base) var(--ease-in-out-quart),
+      inline-size var(--duration-base) var(--ease-in-out-quart);
 
     @media (width >= 768px) {
       display: flex;
@@ -270,8 +270,8 @@
     border-radius: var(--radius-sm);
     outline: none;
     transition:
-      margin var(--duration-base) linear,
-      opacity var(--duration-base) linear;
+      margin var(--duration-base) var(--ease-in-out-quart),
+      opacity var(--duration-base) var(--ease-in-out-quart);
 
     .root[data-collapsible='icon'] & {
       margin-block-start: calc(var(--space-8) * -1);

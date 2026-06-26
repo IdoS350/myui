@@ -132,6 +132,21 @@ function Sidebar({
   const rtl = useDirection() === 'rtl'
   const collapsedAs = state === 'collapsed' ? collapsible : undefined
   const isOffscreen = collapsedAs === 'offcanvas'
+  const [renderChildren, setRenderChildren] = React.useState(!isOffscreen)
+  const [prevIsOffscreen, setPrevIsOffscreen] = React.useState(isOffscreen)
+
+  if (isOffscreen !== prevIsOffscreen) {
+    setPrevIsOffscreen(isOffscreen)
+    if (!isOffscreen) {
+      setRenderChildren(true)
+    }
+  }
+
+  const handleTransitionEnd = (event: React.TransitionEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget && isOffscreen) {
+      setRenderChildren(false)
+    }
+  }
 
   if (collapsible === 'none') {
     return (
@@ -189,9 +204,10 @@ function Sidebar({
         data-variant={variant}
         data-collapsible={collapsedAs}
         style={style}
+        onTransitionEnd={handleTransitionEnd}
         {...props}
       >
-        <div className={styles.inner}>{!isOffscreen && children}</div>
+        <div className={styles.inner}>{renderChildren && children}</div>
       </div>
     </div>
   )

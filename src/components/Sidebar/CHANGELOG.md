@@ -1,3 +1,10 @@
+## [1.0.3] - 2026-06-26
+
+### Fixed
+
+- Offcanvas content no longer disappears instantly when collapsing — it now stays mounted through the slide-out transition and unmounts only once it finishes, driven by `onTransitionEnd` instead of synchronously with the collapsed state — `Sidebar.tsx`
+- Icon-collapsible and offcanvas resize/slide transitions (`.gap`, `.container`, `.groupLabel`) now use `var(--ease-in-out-quart)` instead of `linear`, since they animate an on-screen size/position change rather than constant motion — `Sidebar.module.scss`
+
 ## [1.0.2] - 2026-06-26
 
 ### Changed
