@@ -1148,7 +1148,7 @@
           "target": "@ui/Sidebar/Sidebar.tsx"
         }
       ],
-      "meta": { "version": "1.0.5" }
+      "meta": { "version": "1.0.6" }
     },
     {
       "name": "skeleton",

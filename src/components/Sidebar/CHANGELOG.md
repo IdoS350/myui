@@ -1,3 +1,10 @@
+## [1.0.6] - 2026-06-27
+
+### Fixed
+
+- `SidebarRail`'s hit-box and hover indicator no longer sit fully outside the existing sidebar border — `inset-inline-end`/`inset-inline-start` offsets are now half their previous magnitude, centering the rail directly on top of the border instead of floating beside it — `Sidebar.module.scss`
+- `SidebarSeparator` no longer overflows past its container's edge — `Separator.module.scss`'s `[data-orientation='horizontal'] { width: 100% }` rule was winning the cascade over Sidebar's `inline-size: auto` (higher selector specificity), so the override now uses an ancestor-qualified selector (`.inner > .separator[data-orientation='horizontal']`, `.staticSidebar > .separator[data-orientation='horizontal']`) with strictly higher specificity instead of relying on stylesheet order — `Sidebar.module.scss`
+
 ## [1.0.5] - 2026-06-27
 
 ### Added

@@ -180,11 +180,11 @@
     }
 
     .container[data-side='left'] & {
-      inset-inline-end: calc(var(--space-4) * -1);
+      inset-inline-end: calc(var(--space-4) * -0.5);
     }
 
     .container[data-side='right'] & {
-      inset-inline-start: calc(var(--space-4) * -1);
+      inset-inline-start: calc(var(--space-4) * -0.5);
     }
   }
 
@@ -234,6 +234,13 @@
   .separator {
     inline-size: auto;
     margin-inline: var(--space-2);
+  }
+
+  // Higher specificity than Separator.module.scss's `[data-orientation='horizontal']` width
+  // rule, which would otherwise win the cascade and make the separator overflow its container.
+  .inner > .separator[data-orientation='horizontal'],
+  .staticSidebar > .separator[data-orientation='horizontal'] {
+    width: auto;
   }
 
   .content {
