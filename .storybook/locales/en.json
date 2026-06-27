@@ -617,7 +617,17 @@
     "submenuDesc": "Expandable submenus with badges and hover actions.",
     "loadingDesc": "Skeleton placeholders shown while menu items are loading.",
     "collapse": "Collapse",
-    "expand": "Expand"
+    "expand": "Expand",
+    "billing": "Billing",
+    "notifications": "Notifications",
+    "logOut": "Log out",
+    "userFooterDesc": "A user menu in the footer, opening a dropdown with account actions.",
+    "drafts": "Drafts",
+    "sent": "Sent",
+    "trash": "Trash",
+    "nestedSidebarDesc": "A nested sidebar combining a fixed icon rail with a flexible content panel.",
+    "searchMail": "Search mail…",
+    "noMail": "No mail in this folder."
   },
   "slider": {
     "volume": "Volume",

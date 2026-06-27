@@ -1,3 +1,15 @@
+## [1.0.5] - 2026-06-27
+
+### Added
+
+- `WithUserFooter` story — a NavUser-style footer with avatar, name, and a dropdown menu (Account/Billing/Notifications/Log out) composed via `SidebarMenuButton`'s `render` prop and `Menu` — `Sidebar.stories.tsx`
+- `NestedSidebar` story — a shadcn `sidebar-09`-style composition: an outer `collapsible='icon'` `Sidebar` wrapping two side-by-side `collapsible='none'` sidebars (an icon-only folder rail and a flexible mail-list panel) — `Sidebar.stories.tsx`
+- New locale keys for the stories above (`billing`, `notifications`, `logOut`, `userFooterDesc`, `drafts`, `sent`, `trash`, `nestedSidebarDesc`, `searchMail`, `noMail`) — `.storybook/locales/en.json`, `.storybook/locales/he.json`
+
+### Fixed
+
+- `SidebarRail` no longer renders as a visibly thick double line next to the existing sidebar border — its `::after` indicator is now transparent at rest (so the existing border is the only visible line) and only renders a colored line on hover, as a drag affordance — `Sidebar.module.scss`
+
 ## [1.0.4] - 2026-06-27
 
 ### Fixed

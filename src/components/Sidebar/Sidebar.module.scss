@@ -159,7 +159,6 @@
     border: none;
     padding: 0;
     cursor: ew-resize;
-    transition: background-color var(--duration-base) linear;
 
     @media (width >= 768px) {
       display: block;
@@ -172,11 +171,12 @@
       inset-inline-start: 50%;
       inline-size: 2px;
       transform: translateX(-50%);
-      background-color: var(--color-border);
+      background-color: transparent;
+      transition: background-color var(--duration-base) linear;
     }
 
-    &:hover {
-      background-color: var(--color-hover);
+    &:hover::after {
+      background-color: var(--color-border);
     }
 
     .container[data-side='left'] & {

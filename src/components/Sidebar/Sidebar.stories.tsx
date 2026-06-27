@@ -1,18 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import {
+  BadgeCheck,
+  Bell,
   Calendar,
   ChevronRight,
+  ChevronsUpDown,
+  CreditCard,
+  FileEdit,
   Home,
   Inbox,
+  LogOut,
   MoreHorizontal,
   Plus,
   Search,
+  Send,
   Settings,
+  Trash2,
   User,
 } from 'lucide-react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Avatar } from '../Avatar/Avatar'
 import { Button } from '../Button/Button'
+import { MenuContent, MenuItem, MenuRoot, MenuSeparator, MenuTrigger } from '../Menu/Menu'
 import {
   Sidebar,
   SidebarContent,
@@ -38,6 +48,59 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from './Sidebar'
+
+interface MailFolder {
+  key: string
+  labelKey: string
+  icon: typeof Inbox
+}
+
+const mailFolders: MailFolder[] = [
+  { key: 'inbox', labelKey: 'sidebar.inbox', icon: Inbox },
+  { key: 'drafts', labelKey: 'sidebar.drafts', icon: FileEdit },
+  { key: 'sent', labelKey: 'sidebar.sent', icon: Send },
+  { key: 'trash', labelKey: 'sidebar.trash', icon: Trash2 },
+]
+
+interface Mail {
+  folder: string
+  sender: string
+  subject: string
+  preview: string
+}
+
+const mailItems: Mail[] = [
+  {
+    folder: 'inbox',
+    sender: 'William Smith',
+    subject: 'Meeting Tomorrow',
+    preview: 'Hi, just a reminder about our meeting tomorrow at 10am.',
+  },
+  {
+    folder: 'inbox',
+    sender: 'Alice Johnson',
+    subject: 'Re: Project Update',
+    preview: 'Thanks for the update. Looks like we are on track.',
+  },
+  {
+    folder: 'drafts',
+    sender: 'Me',
+    subject: 'Q3 budget notes',
+    preview: 'Draft — still need to fill in the marketing numbers.',
+  },
+  {
+    folder: 'sent',
+    sender: 'Me',
+    subject: 'Invoice #1042',
+    preview: 'Attached is the invoice for last month, let me know.',
+  },
+  {
+    folder: 'trash',
+    sender: 'Newsletter',
+    subject: 'Weekly digest',
+    preview: 'This is your weekly summary of activity.',
+  },
+]
 
 export default {
   title: 'Navigation/Sidebar',
@@ -389,6 +452,180 @@ export const WithSubmenuAndBadges: Story = {
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.submenuDesc')}</p>
+        </DemoPage>
+      </SidebarProvider>
+    )
+  },
+}
+
+export const WithUserFooter: Story = {
+  name: 'With user footer',
+  render: function UserFooterSidebar() {
+    const { t } = useTranslation()
+    return (
+      <SidebarProvider>
+        <Sidebar>
+          <SidebarHeader>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton size='lg'>
+                  <Home />
+                  <span>{t('sidebar.appName')}</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive>
+                      <Home />
+                      <span>{t('sidebar.home')}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>
+                      <Settings />
+                      <span>{t('sidebar.settings')}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+          <SidebarFooter>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <MenuRoot>
+                  <SidebarMenuButton size='lg' render={<MenuTrigger />}>
+                    <Avatar fallback='JD' size='sm' />
+                    <span>Jane Doe</span>
+                    <ChevronsUpDown size={16} aria-hidden />
+                  </SidebarMenuButton>
+                  <MenuContent side='top' align='start'>
+                    <MenuItem>
+                      <BadgeCheck size={14} aria-hidden />
+                      {t('sidebar.account')}
+                    </MenuItem>
+                    <MenuItem>
+                      <CreditCard size={14} aria-hidden />
+                      {t('sidebar.billing')}
+                    </MenuItem>
+                    <MenuItem>
+                      <Bell size={14} aria-hidden />
+                      {t('sidebar.notifications')}
+                    </MenuItem>
+                    <MenuSeparator />
+                    <MenuItem>
+                      <LogOut size={14} aria-hidden />
+                      {t('sidebar.logOut')}
+                    </MenuItem>
+                  </MenuContent>
+                </MenuRoot>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarFooter>
+          <SidebarRail />
+        </Sidebar>
+        <DemoPage>
+          <p style={descriptionStyle}>{t('sidebar.userFooterDesc')}</p>
+        </DemoPage>
+      </SidebarProvider>
+    )
+  },
+}
+
+export const NestedSidebar: Story = {
+  name: 'Nested sidebar',
+  render: function NestedSidebarDemo() {
+    const { t } = useTranslation()
+    const [activeFolder, setActiveFolder] = React.useState('inbox')
+    const visibleMail = mailItems.filter((mail) => mail.folder === activeFolder)
+
+    return (
+      <SidebarProvider style={{ '--sidebar-width': '20rem' } as React.CSSProperties}>
+        <Sidebar collapsible='icon' style={{ overflow: 'hidden' }}>
+          <div style={{ display: 'flex', blockSize: '100%', inlineSize: '100%' }}>
+            <Sidebar
+              collapsible='none'
+              style={
+                {
+                  '--sidebar-width': 'var(--sidebar-width-icon)',
+                  borderInlineEnd: '1px solid var(--color-border)',
+                } as React.CSSProperties
+              }
+            >
+              <SidebarHeader>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton size='lg'>
+                      <Home />
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarHeader>
+              <SidebarContent>
+                <SidebarMenu>
+                  {mailFolders.map((folder) => (
+                    <SidebarMenuItem key={folder.key}>
+                      <SidebarMenuButton
+                        tooltip={t(folder.labelKey)}
+                        aria-label={t(folder.labelKey)}
+                        isActive={activeFolder === folder.key}
+                        onClick={() => setActiveFolder(folder.key)}
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <folder.icon />
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarContent>
+            </Sidebar>
+            <Sidebar
+              collapsible='none'
+              style={{ '--sidebar-width': 'auto', flex: '1 1 auto' } as React.CSSProperties}
+            >
+              <SidebarHeader>
+                <SidebarInput
+                  placeholder={t('sidebar.searchMail')}
+                  startSlot={<Search size={14} aria-hidden />}
+                />
+              </SidebarHeader>
+              <SidebarContent>
+                <SidebarMenu>
+                  {visibleMail.map((mail) => (
+                    <SidebarMenuItem key={mail.subject}>
+                      <SidebarMenuButton style={{ blockSize: 'auto', alignItems: 'flex-start' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                          <span>{mail.sender}</span>
+                          <span style={{ color: 'var(--color-fg-muted)' }}>{mail.subject}</span>
+                          <span
+                            style={{
+                              color: 'var(--color-fg-muted)',
+                              fontSize: 'var(--font-size-xs)',
+                            }}
+                          >
+                            {mail.preview}
+                          </span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                  {visibleMail.length === 0 && (
+                    <p style={descriptionStyle}>{t('sidebar.noMail')}</p>
+                  )}
+                </SidebarMenu>
+              </SidebarContent>
+            </Sidebar>
+          </div>
+          <SidebarRail />
+        </Sidebar>
+        <DemoPage>
+          <p style={descriptionStyle}>{t('sidebar.nestedSidebarDesc')}</p>
         </DemoPage>
       </SidebarProvider>
     )
