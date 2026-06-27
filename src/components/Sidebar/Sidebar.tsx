@@ -117,12 +117,14 @@ export interface SidebarProps extends React.ComponentProps<'div'> {
   side?: SidebarSide
   variant?: SidebarVariant
   collapsible?: SidebarCollapsible
+  rail?: React.ReactNode
 }
 
 function Sidebar({
   side = 'left',
   variant = 'sidebar',
   collapsible = 'offcanvas',
+  rail,
   className,
   style,
   children,
@@ -208,6 +210,7 @@ function Sidebar({
         {...props}
       >
         <div className={styles.inner}>{renderChildren && children}</div>
+        {rail}
       </div>
     </div>
   )

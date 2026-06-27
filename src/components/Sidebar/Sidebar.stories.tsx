@@ -152,7 +152,7 @@ export const Default: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar>
+        <Sidebar rail={<SidebarRail />}>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -206,7 +206,6 @@ export const Default: Story = {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.contentPlaceholder')}</p>
@@ -222,7 +221,7 @@ export const IconCollapsible: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar collapsible='icon'>
+        <Sidebar collapsible='icon' rail={<SidebarRail />}>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -260,7 +259,6 @@ export const IconCollapsible: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.iconCollapsibleDesc')}</p>
@@ -276,7 +274,7 @@ export const FloatingVariant: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar variant='floating' collapsible='icon'>
+        <Sidebar variant='floating' collapsible='icon' rail={<SidebarRail />}>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
@@ -298,7 +296,6 @@ export const FloatingVariant: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.floatingDesc')}</p>
@@ -314,7 +311,7 @@ export const InsetVariant: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar variant='inset' collapsible='icon'>
+        <Sidebar variant='inset' collapsible='icon' rail={<SidebarRail />}>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
@@ -336,7 +333,6 @@ export const InsetVariant: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.insetDesc')}</p>
@@ -352,7 +348,7 @@ export const RightSide: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar side='right'>
+        <Sidebar side='right' rail={<SidebarRail />}>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
@@ -374,7 +370,6 @@ export const RightSide: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.rightSideDesc')}</p>
@@ -391,7 +386,7 @@ export const WithSubmenuAndBadges: Story = {
     const [expanded, setExpanded] = React.useState(true)
     return (
       <SidebarProvider>
-        <Sidebar>
+        <Sidebar rail={<SidebarRail />}>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -448,7 +443,6 @@ export const WithSubmenuAndBadges: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.submenuDesc')}</p>
@@ -464,7 +458,7 @@ export const WithUserFooter: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar>
+        <Sidebar rail={<SidebarRail />}>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -528,7 +522,6 @@ export const WithUserFooter: Story = {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarFooter>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.userFooterDesc')}</p>
@@ -547,7 +540,7 @@ export const NestedSidebar: Story = {
 
     return (
       <SidebarProvider style={{ '--sidebar-width': '20rem' } as React.CSSProperties}>
-        <Sidebar collapsible='icon' style={{ overflow: 'hidden' }}>
+        <Sidebar collapsible='icon' style={{ overflow: 'hidden' }} rail={<SidebarRail />}>
           <div style={{ display: 'flex', blockSize: '100%', inlineSize: '100%' }}>
             <Sidebar
               collapsible='none'
@@ -568,21 +561,25 @@ export const NestedSidebar: Story = {
                 </SidebarMenu>
               </SidebarHeader>
               <SidebarContent>
-                <SidebarMenu>
-                  {mailFolders.map((folder) => (
-                    <SidebarMenuItem key={folder.key}>
-                      <SidebarMenuButton
-                        tooltip={t(folder.labelKey)}
-                        aria-label={t(folder.labelKey)}
-                        isActive={activeFolder === folder.key}
-                        onClick={() => setActiveFolder(folder.key)}
-                        style={{ justifyContent: 'center' }}
-                      >
-                        <folder.icon />
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
+                <SidebarGroup>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {mailFolders.map((folder) => (
+                        <SidebarMenuItem key={folder.key}>
+                          <SidebarMenuButton
+                            tooltip={t(folder.labelKey)}
+                            aria-label={t(folder.labelKey)}
+                            isActive={activeFolder === folder.key}
+                            onClick={() => setActiveFolder(folder.key)}
+                            style={{ justifyContent: 'center' }}
+                          >
+                            <folder.icon />
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
               </SidebarContent>
             </Sidebar>
             <Sidebar
@@ -622,7 +619,6 @@ export const NestedSidebar: Story = {
               </SidebarContent>
             </Sidebar>
           </div>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.nestedSidebarDesc')}</p>
@@ -638,7 +634,7 @@ export const LoadingSkeleton: Story = {
     const { t } = useTranslation()
     return (
       <SidebarProvider>
-        <Sidebar>
+        <Sidebar rail={<SidebarRail />}>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
@@ -653,7 +649,6 @@ export const LoadingSkeleton: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <DemoPage>
           <p style={descriptionStyle}>{t('sidebar.loadingDesc')}</p>
@@ -669,7 +664,7 @@ export const Controlled: Story = {
     const [open, setOpen] = React.useState(true)
     return (
       <SidebarProvider open={open} onOpenChange={setOpen}>
-        <Sidebar>
+        <Sidebar rail={<SidebarRail />}>
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>{t('sidebar.platform')}</SidebarGroupLabel>
@@ -685,7 +680,6 @@ export const Controlled: Story = {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          <SidebarRail />
         </Sidebar>
         <SidebarInset>
           <header style={headerStyle}>

@@ -164,6 +164,24 @@
       display: block;
     }
 
+    .root[data-side='left']:not([data-state='collapsed']) &,
+    .root[data-side='right'][data-state='collapsed'] & {
+      cursor: w-resize;
+
+      @include rtl {
+        cursor: e-resize;
+      }
+    }
+
+    .root[data-side='left'][data-state='collapsed'] &,
+    .root[data-side='right']:not([data-state='collapsed']) & {
+      cursor: e-resize;
+
+      @include rtl {
+        cursor: w-resize;
+      }
+    }
+
     &::after {
       content: '';
       position: absolute;
@@ -177,6 +195,10 @@
 
     &:hover::after {
       background-color: var(--color-border);
+    }
+
+    .container[data-collapsible='offcanvas'] &:hover {
+      background-color: var(--color-bg-subtle);
     }
 
     .container[data-side='left'] & {
