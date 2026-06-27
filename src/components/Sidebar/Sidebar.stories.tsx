@@ -554,7 +554,7 @@ export const NestedSidebar: Story = {
               <SidebarHeader>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton size='lg'>
+                    <SidebarMenuButton style={{ justifyContent: 'center' }}>
                       <Home />
                     </SidebarMenuButton>
                   </SidebarMenuItem>
