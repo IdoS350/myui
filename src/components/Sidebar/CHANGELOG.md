@@ -1,3 +1,11 @@
+## [1.0.4] - 2026-06-27
+
+### Fixed
+
+- Icon-collapse transition no longer visually desyncs from the menu button's instant width snap — `.gap`, `.container`, and `.groupLabel` now use `var(--ease-out-quart)` instead of `var(--ease-in-out-quart)`, matching shadcn's reference behavior of starting movement immediately rather than ramping up — `Sidebar.module.scss`
+- Removed a transient horizontal scrollbar that appeared for ~100ms when expanding the icon-collapsible variant — `.content` now disables horizontal overflow permanently (`overflow: hidden auto`) instead of only while icon-collapsed, since full-width content was briefly wider than the still-animating container — `Sidebar.module.scss`
+- `SidebarMenuBadge` no longer renders as a full-width block — it now uses `position: absolute` anchored to the row's end (matching `.menuAction`'s existing pattern) instead of `margin-inline-start: auto`, which had no effect since its parent `<li>` is not a flex container — `Sidebar.module.scss`
+
 ## [1.0.3] - 2026-06-26
 
 ### Fixed

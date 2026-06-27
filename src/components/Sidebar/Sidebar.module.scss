@@ -37,7 +37,7 @@
     position: relative;
     inline-size: var(--sidebar-width);
     background-color: transparent;
-    transition: inline-size var(--duration-base) var(--ease-in-out-quart);
+    transition: inline-size var(--duration-base) var(--ease-out-quart);
 
     &[data-collapsible='offcanvas'] {
       inline-size: 0;
@@ -61,9 +61,9 @@
     block-size: 100vh;
     inline-size: var(--sidebar-width);
     transition:
-      inset-inline-start var(--duration-base) var(--ease-in-out-quart),
-      inset-inline-end var(--duration-base) var(--ease-in-out-quart),
-      inline-size var(--duration-base) var(--ease-in-out-quart);
+      inset-inline-start var(--duration-base) var(--ease-out-quart),
+      inset-inline-end var(--duration-base) var(--ease-out-quart),
+      inline-size var(--duration-base) var(--ease-out-quart);
 
     @media (width >= 768px) {
       display: flex;
@@ -242,10 +242,10 @@
     flex: 1 1 auto;
     flex-direction: column;
     gap: var(--space-2);
-    overflow: auto;
+    overflow: hidden auto;
 
     .root[data-collapsible='icon'] & {
-      overflow: hidden;
+      overflow-y: hidden;
     }
   }
 
@@ -270,8 +270,8 @@
     border-radius: var(--radius-sm);
     outline: none;
     transition:
-      margin var(--duration-base) var(--ease-in-out-quart),
-      opacity var(--duration-base) var(--ease-in-out-quart);
+      margin var(--duration-base) var(--ease-out-quart),
+      opacity var(--duration-base) var(--ease-out-quart);
 
     .root[data-collapsible='icon'] & {
       margin-block-start: calc(var(--space-8) * -1);
@@ -435,13 +435,16 @@
   }
 
   .menuBadge {
+    position: absolute;
+    inset-inline-end: var(--space-1);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     min-inline-size: var(--space-5);
     block-size: var(--space-5);
     padding-inline: var(--space-1);
-    margin-inline-start: auto;
     border-radius: var(--radius-full);
     font-size: var(--font-size-xs);
     font-variant-numeric: tabular-nums;
