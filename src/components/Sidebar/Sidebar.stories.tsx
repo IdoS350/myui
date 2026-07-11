@@ -597,11 +597,26 @@ export const NestedSidebar: Story = {
                   {visibleMail.map((mail) => (
                     <SidebarMenuItem key={mail.subject}>
                       <SidebarMenuButton style={{ blockSize: 'auto', alignItems: 'flex-start' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 'var(--space-1)',
+                            minWidth: 0,
+                            width: '100%',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
                           <span>{mail.sender}</span>
                           <span style={{ color: 'var(--color-fg-muted)' }}>{mail.subject}</span>
                           <span
                             style={{
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              overflow: 'hidden',
+                              inlineSize: '14rem',
+                              whiteSpace: 'normal',
                               color: 'var(--color-fg-muted)',
                               fontSize: 'var(--font-size-xs)',
                             }}
