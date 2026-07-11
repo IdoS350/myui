@@ -1,3 +1,9 @@
+## [1.1.1] - 2026-07-01
+
+### Fixed
+
+- Bottom-sheet drawer now smoothly animates around the on-screen keyboard instead of jumping — added `padding-block-end`/`max-block-size`/`block-size` transitions driven by `--drawer-keyboard-inset`, and constrained `max-block-size` to `100dvh` minus the keyboard inset so the drawer no longer extends underneath the keyboard — `Drawer.module.scss`
+
 ## [1.1.0] - 2026-06-19
 
 ### Added
