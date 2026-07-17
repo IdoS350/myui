@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Combobox as BaseCombobox } from '@base-ui/react/combobox'
 import { Check, ChevronDown, X } from 'lucide-react'
 import * as React from 'react'

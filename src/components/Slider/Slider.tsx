@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Slider as BaseSlider } from '@base-ui/react/slider'
 import React from 'react'
 import {

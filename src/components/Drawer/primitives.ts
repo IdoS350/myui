@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 import styles from './Drawer.module.scss'
 

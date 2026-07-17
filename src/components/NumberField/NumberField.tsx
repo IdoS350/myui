@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field'
 import { Minus, Plus } from 'lucide-react'
 import {

@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 import styles from './Autocomplete.module.scss'
 

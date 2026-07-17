@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Meter as BaseMeter } from '@base-ui/react/meter'
 import styles from './Meter.module.scss'
 import { MeterIndicator, MeterLabel, MeterRoot, MeterTrack, MeterValue } from './primitives'

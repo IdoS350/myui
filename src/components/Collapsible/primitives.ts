@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
 import styles from './Collapsible.module.scss'
 

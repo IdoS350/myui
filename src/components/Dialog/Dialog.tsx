@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from '@/components/Button/Button'
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Dialog as BaseDialog } from '@base-ui/react/dialog'
 import clsx from 'clsx'
 import { X } from 'lucide-react'

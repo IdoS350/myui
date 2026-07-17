@@ -65,14 +65,10 @@
       "description": "Shared styled() helper and slot-prop type utilities",
       "dependencies": ["clsx@^2.1.1"],
       "files": [
-        { "path": "src/utilities/styled.tsx", "type": "registry:lib", "target": "@lib/styled.tsx" },
-        {
-          "path": "src/types/styleUtilities.ts",
-          "type": "registry:lib",
-          "target": "@lib/styleUtilities.ts"
-        }
+        { "path": "src/lib/styled.tsx", "type": "registry:lib", "target": "@lib/styled.tsx" },
+        { "path": "src/lib/slotProps.ts", "type": "registry:lib", "target": "@lib/slotProps.ts" }
       ],
-      "meta": { "version": "1.0.0" }
+      "meta": { "version": "1.1.0" }
     },
     {
       "name": "use-controllable-state",
@@ -747,7 +743,7 @@
           "target": "@ui/Drawer/primitives.ts"
         }
       ],
-      "meta": { "version": "1.1.0" }
+      "meta": { "version": "1.1.1" }
     },
     {
       "name": "empty",
@@ -1148,7 +1144,7 @@
           "target": "@ui/Sidebar/Sidebar.tsx"
         }
       ],
-      "meta": { "version": "1.0.6" }
+      "meta": { "version": "1.0.0" }
     },
     {
       "name": "skeleton",

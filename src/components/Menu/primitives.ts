@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import styles from './Menu.module.scss'
 

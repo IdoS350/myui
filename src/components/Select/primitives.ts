@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Select as BaseSelect } from '@base-ui/react/select'
 import styles from './Select.module.scss'
 

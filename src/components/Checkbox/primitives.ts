@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import styles from './Checkbox.module.scss'
 

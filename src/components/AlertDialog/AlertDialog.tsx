@@ -1,6 +1,6 @@
 import { AlertDescription, AlertRoot, type AlertVariant } from '@/components/Alert/Alert'
 import { Button, type ButtonProps, type ButtonVariant } from '@/components/Button/Button'
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { AlertDialog as BaseAlertDialog } from '@base-ui/react/alert-dialog'
 import clsx from 'clsx'
 import { AlertCircle, CheckCircle, Info, TriangleAlert } from 'lucide-react'

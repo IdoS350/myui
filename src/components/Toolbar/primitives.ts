@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Toolbar as BaseToolbar } from '@base-ui/react/toolbar'
 import styles from './Toolbar.module.scss'
 

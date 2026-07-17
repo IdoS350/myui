@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Fieldset as BaseFieldset } from '@base-ui/react/fieldset'
 import styles from './Fieldset.module.scss'
 

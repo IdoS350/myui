@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 import styles from './Accordion.module.scss'
 

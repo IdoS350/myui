@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Slider as BaseSlider } from '@base-ui/react/slider'
 import styles from './Slider.module.scss'
 

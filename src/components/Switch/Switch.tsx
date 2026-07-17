@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import clsx from 'clsx'
 import React from 'react'

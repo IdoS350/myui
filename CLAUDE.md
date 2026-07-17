@@ -6,9 +6,9 @@
 - Same-directory `./` imports are fine (and preferred): `import Primitives from './primitives'`
 
 ```ts
-import { styled } from '@/utilities/styled' // ✅
+import { styled } from '@/lib/styled' // ✅
 import { ButtonRoot } from '@/components/Button/Button' // ✅
-import { styled } from '../../utilities/styled' // ❌
+import { styled } from '../../lib/styled' // ❌
 ```
 
 `@/` is a standard shadcn requirement (`@/*` → `src/*` in `tsconfig.json` + Vite alias).
@@ -71,12 +71,12 @@ After editing any source file for a component or theme item, update its changelo
 
 Changelog location per item type:
 
-| Item         | Changelog                                      |
-| ------------ | ---------------------------------------------- |
-| UI component | `src/components/{Name}/CHANGELOG.md`           |
-| Theme        | `src/theme/CHANGELOG.md`                       |
-| Utils / lib  | `src/utilities/CHANGELOG.{name}.md` (optional) |
-| Hook         | `src/hooks/CHANGELOG.{name}.md` (optional)     |
+| Item         | Changelog                                  |
+| ------------ | ------------------------------------------ |
+| UI component | `src/components/{Name}/CHANGELOG.md`       |
+| Theme        | `src/theme/CHANGELOG.md`                   |
+| Utils / lib  | `src/lib/CHANGELOG.{name}.md` (optional)   |
+| Hook         | `src/hooks/CHANGELOG.{name}.md` (optional) |
 
 Changelogs follow [Keep a Changelog](https://keepachangelog.com) format — newest entry first, standard section headings (`Added`, `Changed`, `Fixed`, `Removed`), each bullet includes the code location:
 

@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Progress as BaseProgress } from '@base-ui/react/progress'
 import {
   ProgressIndicator,

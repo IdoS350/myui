@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Progress as BaseProgress } from '@base-ui/react/progress'
 import styles from './Progress.module.scss'
 

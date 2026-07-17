@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import styles from './Avatar.module.scss'
 

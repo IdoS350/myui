@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete'
 import { ChevronDown, X } from 'lucide-react'
 import styles from './Autocomplete.module.scss'

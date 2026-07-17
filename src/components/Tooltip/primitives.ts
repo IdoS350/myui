@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import styles from './Tooltip.module.scss'
 

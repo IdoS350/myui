@@ -69,7 +69,7 @@ for (const file of changedFiles) {
     continue
   }
 
-  // src/utilities/*, src/types/*, src/hooks/*: exempt — no check
+  // src/lib/*, src/hooks/*: exempt — no check
 }
 
 if (checks.size === 0) {

@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { useDirection } from '@base-ui/react/direction-provider'
 import { Menu as BaseMenu } from '@base-ui/react/menu'
 import { Check, ChevronRight } from 'lucide-react'

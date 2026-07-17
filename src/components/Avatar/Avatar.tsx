@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Avatar as BaseAvatar } from '@base-ui/react/avatar'
 import Primitives from './primitives'
 

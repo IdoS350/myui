@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 import styles from './Tabs.module.scss'
 

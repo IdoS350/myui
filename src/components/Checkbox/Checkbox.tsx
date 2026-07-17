@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox'
 import clsx from 'clsx'
 import { Check, Minus } from 'lucide-react'

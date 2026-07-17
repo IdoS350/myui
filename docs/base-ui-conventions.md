@@ -13,7 +13,7 @@ Each UI widget has a `primitives.ts` file that:
 ```ts
 // src/components/Select/primitives.ts
 import { Select as BaseSelect } from '@base-ui/react/select'
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import styles from './Select.module.scss'
 
 export default {
@@ -93,7 +93,7 @@ import { SelectRoot, SelectTrigger, SelectList, SelectItem } from '@/components/
 
 ## `SlotProps<Namespace, IncludedSlots>` — flat slot prop forwarding
 
-Defined in `src/types/styleUtilities.ts`. Extracts props for specific internal slots from a Base UI component namespace and surfaces them as flat `*Props` keys on the composite's interface.
+Defined in `src/lib/slotProps.ts`. Extracts props for specific internal slots from a Base UI component namespace and surfaces them as flat `*Props` keys on the composite's interface.
 
 ```ts
 interface SelectTriggerProps
@@ -110,7 +110,7 @@ interface SelectTriggerProps
 
 ## `styled(Component, baseClass)`
 
-Defined in `src/utilities/styled.tsx`. Wraps any `ComponentType`, merges `baseClass` with any additional `className` via `clsx`, and preserves the original type signature exactly.
+Defined in `src/lib/styled.tsx`. Wraps any `ComponentType`, merges `baseClass` with any additional `className` via `clsx`, and preserves the original type signature exactly.
 
 ```ts
 export function styled<C extends React.ComponentType<any>>(Component: C, baseClass: string): C

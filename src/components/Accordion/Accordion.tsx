@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Accordion as BaseAccordion } from '@base-ui/react/accordion'
 import { ChevronRight } from 'lucide-react'
 import React from 'react'

@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Field as BaseField } from '@base-ui/react/field'
 import styles from './Field.module.scss'
 

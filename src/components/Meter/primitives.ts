@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Meter as BaseMeter } from '@base-ui/react/meter'
 import styles from './Meter.module.scss'
 

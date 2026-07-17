@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Popover as BasePopover } from '@base-ui/react/popover'
 import React from 'react'
 import Primitives from './primitives'

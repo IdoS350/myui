@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { AlertDialog as BaseAlertDialog } from '@base-ui/react/alert-dialog'
 import styles from './AlertDialog.module.scss'
 

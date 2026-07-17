@@ -25,8 +25,7 @@ export default defineConfig([
     files: [
       'src/components/**/*.{ts,tsx}',
       'src/hooks/**/*.{ts,tsx}',
-      'src/utilities/**/*.{ts,tsx}',
-      'src/types/**/*.{ts,tsx}',
+      'src/lib/**/*.{ts,tsx}',
       'src/theme/**/*.{ts,tsx}',
     ],
     ignores: ['src/**/*.stories.{ts,tsx}'],

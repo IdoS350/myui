@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Switch as BaseSwitch } from '@base-ui/react/switch'
 import styles from './Switch.module.scss'
 

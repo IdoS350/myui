@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { ScrollArea as BaseScrollArea } from '@base-ui/react/scroll-area'
 import styles from './ScrollArea.module.scss'
 

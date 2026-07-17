@@ -33,7 +33,7 @@ const LIB_SCAN_DIRS: Array<{
   type: 'registry:hook' | 'registry:lib'
 }> = [
   { path: 'src/hooks', type: 'registry:hook' },
-  { path: 'src/utilities', type: 'registry:lib' },
+  { path: 'src/lib', type: 'registry:lib' },
   { path: 'src/theme', type: 'registry:lib' },
 ]
 
@@ -277,14 +277,14 @@ const UTILS_ITEM: RegistryItem = {
   dependencies: ['clsx'],
   files: [
     {
-      path: 'src/utilities/styled.tsx',
+      path: 'src/lib/styled.tsx',
       type: 'registry:lib',
       target: '@lib/styled.tsx',
     },
     {
-      path: 'src/types/styleUtilities.ts',
+      path: 'src/lib/slotProps.ts',
       type: 'registry:lib',
-      target: '@lib/styleUtilities.ts',
+      target: '@lib/slotProps.ts',
     },
   ],
 }
@@ -506,7 +506,7 @@ async function main(): Promise<void> {
     { item: THEME_ITEM, changelogPath: join(ROOT, 'src/theme/CHANGELOG.md'), required: true },
     {
       item: UTILS_ITEM,
-      changelogPath: join(ROOT, 'src/utilities/CHANGELOG.style-utils.md'),
+      changelogPath: join(ROOT, 'src/lib/CHANGELOG.style-utils.md'),
       required: false,
     },
   ]

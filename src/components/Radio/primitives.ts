@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Radio as BaseRadio } from '@base-ui/react/radio'
 import { RadioGroup } from '@base-ui/react/radio-group'
 import React from 'react'

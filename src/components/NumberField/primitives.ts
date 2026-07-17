@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field'
 import styles from './NumberField.module.scss'
 

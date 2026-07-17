@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Tabs as BaseTabs } from '@base-ui/react/tabs'
 import Primitives from './primitives'
 

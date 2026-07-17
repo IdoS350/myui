@@ -1,4 +1,4 @@
-import { styled } from '@/utilities/styled'
+import { styled } from '@/lib/styled'
 import { Toast as BaseToast } from '@base-ui/react/toast'
 import styles from './Toast.module.scss'
 

@@ -1,4 +1,4 @@
-import { type SlotProps } from '@/types/styleUtilities'
+import { type SlotProps } from '@/lib/slotProps'
 import { Tooltip as BaseTooltip } from '@base-ui/react/tooltip'
 import React from 'react'
 import Primitives from './primitives'
