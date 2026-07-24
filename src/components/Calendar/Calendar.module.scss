@@ -133,7 +133,15 @@
   }
 
   .monthGrid {
-    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .weeks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .month {

@@ -360,7 +360,7 @@
           "target": "@ui/Calendar/Calendar.tsx"
         }
       ],
-      "meta": { "version": "1.0.2" }
+      "meta": { "version": "1.0.3" }
     },
     {
       "name": "checkbox",
@@ -693,7 +693,7 @@
           "target": "@ui/DatePicker/DatePicker.tsx"
         }
       ],
-      "meta": { "version": "1.0.0" }
+      "meta": { "version": "1.0.1" }
     },
     {
       "name": "dialog",
