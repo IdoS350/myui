@@ -845,7 +845,13 @@
     "current": "נוכחי:",
     "previous": "קודם:",
     "true": "נכון",
-    "false": "שקר"
+    "false": "שקר",
+    "quickFetch": "בקשה מהירה (100 מ\"ש)",
+    "shortFetch": "בקשה (250 מ\"ש)",
+    "slowFetch": "בקשה איטית (1200 מ\"ש)",
+    "rawIsLoading": "טעינה גולמית:",
+    "delayedIsLoading": "טעינה מושהית:",
+    "idle": "במנוחה"
   },
   "fruits": {
     "apple": "תפוח",

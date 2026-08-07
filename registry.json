@@ -127,6 +127,34 @@
       ]
     },
     {
+      "name": "use-delayed-loading",
+      "type": "registry:hook",
+      "title": "useDelayedLoading",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/hooks/useDelayedLoading.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useDelayedLoading.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-eased-loading",
+      "type": "registry:hook",
+      "title": "useEasedLoading",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/hooks/useEasedLoading.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useEasedLoading.ts"
+        }
+      ]
+    },
+    {
       "name": "use-intersection-observer",
       "type": "registry:hook",
       "title": "useIntersectionObserver",

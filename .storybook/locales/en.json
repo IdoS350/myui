@@ -845,7 +845,13 @@
     "current": "Current:",
     "previous": "Previous:",
     "true": "true",
-    "false": "false"
+    "false": "false",
+    "quickFetch": "Quick fetch (100 ms)",
+    "shortFetch": "Fetch (250 ms)",
+    "slowFetch": "Slow fetch (1200 ms)",
+    "rawIsLoading": "Raw isLoading:",
+    "delayedIsLoading": "Delayed isLoading:",
+    "idle": "Idle"
   },
   "fruits": {
     "apple": "Apple",
