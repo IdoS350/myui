@@ -1,6 +1,3 @@
-'use no memo'
-
-import { flexRender } from '@tanstack/react-table'
 import { ColumnHeader } from './ColumnHeader'
 import { useDataTableContext } from './DataTableContext'
 import styles from './DataTableHeader.module.scss'
@@ -40,8 +37,17 @@ export function DataTableHeader() {
             >
               {header.isPlaceholder ? null : (
                 <ColumnHeader column={header.column}>
-                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  <table.FlexRender header={header} />
                 </ColumnHeader>
+              )}
+              {header.column.getCanResize() && (
+                <div
+                  className={styles.resizer}
+                  onMouseDown={header.getResizeHandler()}
+                  onTouchStart={header.getResizeHandler()}
+                  onClick={(event) => event.stopPropagation()}
+                  data-resizing={header.column.getIsResizing()}
+                />
               )}
             </TablePrimitive.TableHead>
           ))}

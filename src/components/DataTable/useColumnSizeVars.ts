@@ -1,10 +1,9 @@
-'use no memo'
-
-import type { Table } from '@tanstack/react-table'
+import type { RowData } from '@tanstack/react-table'
 import { useMemo } from 'react'
+import type { DataTableInstance } from './types'
 
-export function useColumnSizeVars<TData>(table: Table<TData>) {
-  const { columnSizingInfo, columnSizing } = table.getState()
+export function useColumnSizeVars<TData extends RowData>(table: DataTableInstance<TData>) {
+  const { columnResizing, columnSizing } = table.state
 
   return useMemo(() => {
     const headers = table.getFlatHeaders()
@@ -17,5 +16,5 @@ export function useColumnSizeVars<TData>(table: Table<TData>) {
 
     return columnSizes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnSizingInfo, columnSizing])
+  }, [columnResizing, columnSizing])
 }

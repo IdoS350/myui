@@ -1,15 +1,5 @@
-'use no memo' // TanStack Table doesn't support the React Compiler yet
-
 import { Input } from '@/components/Input/Input'
-import {
-  getCoreRowModel,
-  getExpandedRowModel,
-  getFilteredRowModel,
-  getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type TableOptions,
-} from '@tanstack/react-table'
+import { useTable, type ColumnDef, type RowData, type TableOptions } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import clsx from 'clsx'
 import { useCallback, useMemo, useRef, type ReactNode } from 'react'
@@ -20,15 +10,16 @@ import {
   type DataTableContextValue,
 } from './DataTableContext'
 import { expandColumnDef } from './expandColumnDef'
+import { features, type DataTableFeatures } from './features'
 import TablePrimitive from './TablePrimitive'
 import type { RenderDetailPanel } from './types'
 import { useColumnSizeVars } from './useColumnSizeVars'
 
-interface DataTableRootProps<TData, TValue> extends Omit<
-  TableOptions<TData>,
-  'columns' | 'getCoreRowModel'
+interface DataTableRootProps<TData extends RowData, TValue> extends Omit<
+  TableOptions<DataTableFeatures, TData>,
+  'columns' | 'features'
 > {
-  columns: (ColumnDef<TData, TValue> | undefined)[]
+  columns: (ColumnDef<DataTableFeatures, TData, TValue> | undefined)[]
   data: TData[]
   isLoading?: boolean
   enableVirtualization?: boolean
@@ -38,7 +29,7 @@ interface DataTableRootProps<TData, TValue> extends Omit<
   children?: ReactNode
 }
 
-function DataTableRoot<TData, TValue>({
+function DataTableRoot<TData extends RowData, TValue>({
   columns: providedColumns,
   isLoading,
   data,
@@ -51,24 +42,25 @@ function DataTableRoot<TData, TValue>({
 }: DataTableRootProps<TData, TValue>) {
   const tableContainerRef = useRef<HTMLDivElement>(null)
 
-  const columns = useMemo<ColumnDef<TData, TValue>[]>(
+  const columns = useMemo<ColumnDef<DataTableFeatures, TData, TValue>[]>(
     () =>
       [
-        renderDetailPanel ? (expandColumnDef as ColumnDef<TData, TValue>) : undefined,
+        renderDetailPanel
+          ? (expandColumnDef as unknown as ColumnDef<DataTableFeatures, TData, TValue>)
+          : undefined,
         ...providedColumns,
-      ].filter((column): column is ColumnDef<TData, TValue> => column !== undefined),
+      ].filter(
+        (column): column is ColumnDef<DataTableFeatures, TData, TValue> => column !== undefined,
+      ),
     [providedColumns, renderDetailPanel],
   )
 
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const table = useReactTable({
-    columns,
+  const table = useTable({
+    features,
+    columns: columns as unknown as ColumnDef<DataTableFeatures, TData, unknown>[],
     data,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
     getRowCanExpand: renderDetailPanel ? () => true : undefined,
+    enableColumnResizing: false,
     ...options,
   })
 
@@ -83,6 +75,7 @@ function DataTableRoot<TData, TValue>({
     [renderDetailPanel, table],
   )
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- TanStack Virtual doesn't support the React Compiler yet
   const rowVirtualizer = useVirtualizer({
     count: isLoading ? loadingRowsCount : renderDetailPanel ? rowCount * 2 : rowCount,
     estimateSize,
@@ -149,7 +142,7 @@ interface DataTableSearchProps {
 
 function DataTableSearch({ placeholder, className }: DataTableSearchProps) {
   const { table } = useDataTableContext()
-  const { globalFilter } = table.getState()
+  const { globalFilter } = table.state
 
   return (
     <Input

@@ -1,15 +1,14 @@
-'use no memo'
-
 import { Collapsible } from '@base-ui/react/collapsible'
-import { flexRender, type Row } from '@tanstack/react-table'
+import { type Row, type RowData } from '@tanstack/react-table'
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual'
 import { Fragment, type RefObject } from 'react'
 import { useDataTableContext } from './DataTableContext'
 import styles from './DataTableRow.module.scss'
+import type { DataTableFeatures } from './features'
 import TablePrimitive from './TablePrimitive'
 
-export interface DataTableRowProps<TData> {
-  row: Row<TData>
+export interface DataTableRowProps<TData extends RowData> {
+  row: Row<DataTableFeatures, TData>
   enableVirtualization?: boolean
   virtualRow?: VirtualItem
   rowVirtualizer?: Virtualizer<HTMLDivElement, Element>
@@ -17,7 +16,7 @@ export interface DataTableRowProps<TData> {
   ref?: RefObject<HTMLTableRowElement | null>
 }
 
-export function DataTableRow<TData>({
+export function DataTableRow<TData extends RowData>({
   row,
   rowsRef,
   enableVirtualization,
@@ -64,7 +63,7 @@ export function DataTableRow<TData>({
               width: !enableVirtualization ? cell.column.getSize() : undefined,
             }}
           >
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            <table.FlexRender cell={cell} />
           </TablePrimitive.TableCell>
         ))}
       </TablePrimitive.TableRow>

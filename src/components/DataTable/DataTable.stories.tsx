@@ -1,5 +1,3 @@
-'use no memo'
-
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ColumnDef } from '@tanstack/react-table'
 import React from 'react'
@@ -7,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { DataTableContent, DataTableRoot, DataTableSearch, selectColumnDef } from './DataTable'
 import { DataTableBody } from './DataTableBody'
 import { DataTableHeader } from './DataTableHeader'
+import type { DataTableFeatures } from './features'
 
 export default {
   title: 'Data/DataTable',
@@ -152,7 +151,7 @@ const PROJECTS_BY_EMPLOYEE: Record<string, Project[]> = {
 export const Basic: Story = {
   render: function Basic() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -195,7 +194,7 @@ export const Basic: Story = {
 export const WithSorting: Story = {
   render: function WithSorting() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -224,7 +223,7 @@ export const WithSorting: Story = {
           }).format(getValue<number>()),
       },
     ]
-    const sortableColumns: ColumnDef<Employee>[] = baseColumns.map((col) => ({
+    const sortableColumns: ColumnDef<DataTableFeatures, Employee>[] = baseColumns.map((col) => ({
       ...col,
       enableSorting: true,
     }))
@@ -243,7 +242,7 @@ export const WithSorting: Story = {
 export const WithSearch: Story = {
   render: function WithSearch() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -289,7 +288,7 @@ export const WithRowSelection: Story = {
     const { t } = useTranslation()
     const [rowSelection, setRowSelection] = React.useState({})
 
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -318,7 +317,10 @@ export const WithRowSelection: Story = {
           }).format(getValue<number>()),
       },
     ]
-    const columns: ColumnDef<Employee>[] = [selectColumnDef as ColumnDef<Employee>, ...baseColumns]
+    const columns: ColumnDef<DataTableFeatures, Employee>[] = [
+      selectColumnDef as unknown as ColumnDef<DataTableFeatures, Employee>,
+      ...baseColumns,
+    ]
 
     return (
       <DataTableRoot
@@ -340,7 +342,7 @@ export const WithRowSelection: Story = {
 export const WithDetailPanel: Story = {
   render: function WithDetailPanel() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -412,7 +414,7 @@ export const WithDetailPanel: Story = {
 export const WithNestedTable: Story = {
   render: function WithNestedTable() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -441,7 +443,7 @@ export const WithNestedTable: Story = {
           }).format(getValue<number>()),
       },
     ]
-    const PROJECT_COLUMNS: ColumnDef<Project>[] = [
+    const PROJECT_COLUMNS: ColumnDef<DataTableFeatures, Project>[] = [
       { accessorKey: 'name', header: t('dataTable.project'), size: 220 },
       { accessorKey: 'status', header: t('dataTable.status'), size: 130 },
       { accessorKey: 'priority', header: t('dataTable.priority'), size: 100 },
@@ -504,7 +506,7 @@ const LARGE_DATASET: Employee[] = Array.from({ length: 500 }, (_, i) => ({
 export const VirtualizedWithNestedTable: Story = {
   render: function VirtualizedWithNestedTable() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -533,7 +535,7 @@ export const VirtualizedWithNestedTable: Story = {
           }).format(getValue<number>()),
       },
     ]
-    const PROJECT_COLUMNS: ColumnDef<Project>[] = [
+    const PROJECT_COLUMNS: ColumnDef<DataTableFeatures, Project>[] = [
       { accessorKey: 'name', header: t('dataTable.project'), size: 220 },
       { accessorKey: 'status', header: t('dataTable.status'), size: 130 },
       { accessorKey: 'priority', header: t('dataTable.priority'), size: 100 },
@@ -591,7 +593,7 @@ export const VirtualizedWithNestedTable: Story = {
 export const Loading: Story = {
   render: function Loading() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -616,7 +618,7 @@ export const Loading: Story = {
 export const Empty: Story = {
   render: function EmptyStory() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -641,7 +643,7 @@ export const Empty: Story = {
 export const Virtualized: Story = {
   render: function Virtualized() {
     const { t } = useTranslation()
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -688,7 +690,7 @@ export const AllFeatures: Story = {
     const { t } = useTranslation()
     const [rowSelection, setRowSelection] = React.useState({})
 
-    const baseColumns: ColumnDef<Employee>[] = [
+    const baseColumns: ColumnDef<DataTableFeatures, Employee>[] = [
       { accessorKey: 'name', header: t('dataTable.name'), size: 200 },
       { accessorKey: 'role', header: t('dataTable.role'), size: 150 },
       {
@@ -717,8 +719,8 @@ export const AllFeatures: Story = {
           }).format(getValue<number>()),
       },
     ]
-    const columns: ColumnDef<Employee>[] = [
-      selectColumnDef as ColumnDef<Employee>,
+    const columns: ColumnDef<DataTableFeatures, Employee>[] = [
+      selectColumnDef as unknown as ColumnDef<DataTableFeatures, Employee>,
       ...baseColumns.map((col) => ({ ...col, enableSorting: true })),
     ]
 

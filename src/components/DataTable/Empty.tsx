@@ -1,5 +1,3 @@
-'use no memo'
-
 import { Empty as EmptyRoot, EmptyTitle } from '@/components/Empty/Empty'
 import { useDataTableContext } from './DataTableContext'
 import styles from './Empty.module.scss'

@@ -2,8 +2,9 @@ import { type ColumnDef } from '@tanstack/react-table'
 import clsx from 'clsx'
 import { ChevronDown } from 'lucide-react'
 import styles from './expandColumnDef.module.scss'
+import type { DataTableFeatures } from './features'
 
-export const expandColumnDef: ColumnDef<unknown> = {
+export const expandColumnDef: ColumnDef<DataTableFeatures, Record<string, unknown>> = {
   id: 'expand',
   header: () => null,
   cell: ({ row }) => {
@@ -21,4 +22,5 @@ export const expandColumnDef: ColumnDef<unknown> = {
   minSize: 1,
   size: 1,
   maxSize: 1,
+  enableResizing: false,
 }

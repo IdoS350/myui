@@ -1,18 +1,17 @@
-'use no memo'
-
 import { Button } from '@/components/Button/Button'
-import type { Column } from '@tanstack/react-table'
+import type { Column, RowData } from '@tanstack/react-table'
 import clsx from 'clsx'
 import { ArrowDown, ArrowUp, ChevronsUpDown } from 'lucide-react'
 import type { HTMLAttributes, PropsWithChildren } from 'react'
 import styles from './ColumnHeader.module.scss'
+import type { DataTableFeatures } from './features'
 
-interface ColumnHeaderProps<TData, TValue>
+interface ColumnHeaderProps<TData extends RowData, TValue>
   extends HTMLAttributes<HTMLDivElement>, PropsWithChildren {
-  column: Column<TData, TValue>
+  column: Column<DataTableFeatures, TData, TValue>
 }
 
-export function ColumnHeader<TData, TValue>({
+export function ColumnHeader<TData extends RowData, TValue>({
   column,
   className,
   children,

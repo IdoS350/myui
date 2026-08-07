@@ -14,9 +14,30 @@
       }
 
       .tableHead {
+        position: relative;
+
         &[data-virtualized='true'] {
           align-items: center;
           display: flex;
+        }
+
+        .resizer {
+          position: absolute;
+          inset-block: 0;
+          inset-inline-end: 0;
+          width: 4px;
+          cursor: col-resize;
+          touch-action: none;
+          user-select: none;
+          background-color: transparent;
+
+          &:hover {
+            background-color: var(--color-border-strong);
+          }
+
+          &[data-resizing='true'] {
+            background-color: var(--color-primary);
+          }
         }
       }
     }

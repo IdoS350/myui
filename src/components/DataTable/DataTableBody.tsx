@@ -1,5 +1,3 @@
-'use no memo'
-
 import type { RefObject } from 'react'
 import styles from './DataTableBody.module.scss'
 import { useDataTableContext } from './DataTableContext'

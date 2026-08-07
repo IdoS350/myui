@@ -71,6 +71,20 @@
       "meta": { "version": "1.1.0" }
     },
     {
+      "name": "use-controllable-state.test",
+      "type": "registry:hook",
+      "title": "useControllableState.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-controllable-state"],
+      "files": [
+        {
+          "path": "src/hooks/useControllableState.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useControllableState.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-controllable-state",
       "type": "registry:hook",
       "title": "useControllableState",
@@ -81,6 +95,20 @@
           "path": "src/hooks/useControllableState.ts",
           "type": "registry:hook",
           "target": "@hooks/useControllableState.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-copy-to-clipboard.test",
+      "type": "registry:hook",
+      "title": "useCopyToClipboard.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-copy-to-clipboard"],
+      "files": [
+        {
+          "path": "src/hooks/useCopyToClipboard.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useCopyToClipboard.test.ts"
         }
       ]
     },
@@ -99,6 +127,20 @@
       ]
     },
     {
+      "name": "use-debounce.test",
+      "type": "registry:hook",
+      "title": "useDebounce.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-debounce"],
+      "files": [
+        {
+          "path": "src/hooks/useDebounce.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useDebounce.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-debounce",
       "type": "registry:hook",
       "title": "useDebounce",
@@ -109,6 +151,20 @@
           "path": "src/hooks/useDebounce.ts",
           "type": "registry:hook",
           "target": "@hooks/useDebounce.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-debounced-callback.test",
+      "type": "registry:hook",
+      "title": "useDebouncedCallback.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-debounced-callback"],
+      "files": [
+        {
+          "path": "src/hooks/useDebouncedCallback.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useDebouncedCallback.test.ts"
         }
       ]
     },
@@ -127,6 +183,20 @@
       ]
     },
     {
+      "name": "use-delayed-loading.test",
+      "type": "registry:hook",
+      "title": "useDelayedLoading.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-delayed-loading"],
+      "files": [
+        {
+          "path": "src/hooks/useDelayedLoading.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useDelayedLoading.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-delayed-loading",
       "type": "registry:hook",
       "title": "useDelayedLoading",
@@ -141,16 +211,16 @@
       ]
     },
     {
-      "name": "use-eased-loading",
+      "name": "use-intersection-observer.test",
       "type": "registry:hook",
-      "title": "useEasedLoading",
+      "title": "useIntersectionObserver.test",
       "dependencies": [],
-      "registryDependencies": [],
+      "registryDependencies": ["@myui/use-intersection-observer"],
       "files": [
         {
-          "path": "src/hooks/useEasedLoading.ts",
+          "path": "src/hooks/useIntersectionObserver.test.ts",
           "type": "registry:hook",
-          "target": "@hooks/useEasedLoading.ts"
+          "target": "@hooks/useIntersectionObserver.test.ts"
         }
       ]
     },
@@ -169,6 +239,20 @@
       ]
     },
     {
+      "name": "use-media-query.test",
+      "type": "registry:hook",
+      "title": "useMediaQuery.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-media-query"],
+      "files": [
+        {
+          "path": "src/hooks/useMediaQuery.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/useMediaQuery.test.ts"
+        }
+      ]
+    },
+    {
       "name": "use-media-query",
       "type": "registry:hook",
       "title": "useMediaQuery",
@@ -179,6 +263,20 @@
           "path": "src/hooks/useMediaQuery.ts",
           "type": "registry:hook",
           "target": "@hooks/useMediaQuery.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-previous.test",
+      "type": "registry:hook",
+      "title": "usePrevious.test",
+      "dependencies": [],
+      "registryDependencies": ["@myui/use-previous"],
+      "files": [
+        {
+          "path": "src/hooks/usePrevious.test.ts",
+          "type": "registry:hook",
+          "target": "@hooks/usePrevious.test.ts"
         }
       ]
     },
@@ -531,7 +629,7 @@
       "title": "DataTable",
       "dependencies": [
         "@base-ui/react@^1.6.0",
-        "@tanstack/react-table@^8.21.3",
+        "@tanstack/react-table@^9.0.0",
         "@tanstack/react-virtual@^3.14.2",
         "clsx@^2.1.1",
         "lucide-react@^1.16.0"
@@ -641,6 +739,11 @@
           "target": "@ui/DataTable/expandColumnDef.tsx"
         },
         {
+          "path": "src/components/DataTable/features.ts",
+          "type": "registry:ui",
+          "target": "@ui/DataTable/features.ts"
+        },
+        {
           "path": "src/components/DataTable/selectColumnDef.tsx",
           "type": "registry:ui",
           "target": "@ui/DataTable/selectColumnDef.tsx"
@@ -656,7 +759,7 @@
           "target": "@ui/DataTable/useColumnSizeVars.ts"
         }
       ],
-      "meta": { "version": "1.0.1" }
+      "meta": { "version": "2.0.0" }
     },
     {
       "name": "date-input",

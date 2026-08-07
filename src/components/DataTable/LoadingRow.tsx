@@ -1,5 +1,3 @@
-'use no memo'
-
 import { Skeleton } from '@/components/Skeleton/Skeleton'
 import type { VirtualItem, Virtualizer } from '@tanstack/react-virtual'
 import { useDataTableContext } from './DataTableContext'
