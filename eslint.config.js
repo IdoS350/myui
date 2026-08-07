@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import vitest from '@vitest/eslint-plugin'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
@@ -39,5 +40,9 @@ export default defineConfig([
     rules: {
       'local/no-parent-import': 'error',
     },
+  },
+  {
+    files: ['**/*.test.{ts,tsx}'],
+    extends: [vitest.configs.recommended],
   },
 ])

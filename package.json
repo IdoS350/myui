@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "check": "pnpm format:check && pnpm lint && pnpm lint:css && tsc -b",
+    "check": "pnpm format:check && pnpm lint && pnpm lint:css && tsc -b && pnpm test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "storybook": "storybook dev -p 6006 --no-open",
     "storybook:build": "storybook build",
     "registry:generate": "tsx scripts/generate-registry.ts",
@@ -38,14 +40,17 @@
     "@storybook/addon-docs": "^10.4.1",
     "@storybook/react": "^10.4.1",
     "@storybook/react-vite": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/eslint-plugin": "^1.6.25",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "jsdom": "^30.0.1",
     "prettier": "^3.8.3",
     "prettier-plugin-organize-imports": "^4.3.0",
     "remark-gfm": "^4.0.1",
@@ -58,6 +63,7 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.0",
     "typescript-plugin-css-modules": "^5.2.0",
-    "vite": "^8.0.4"
+    "vite": "^8.0.4",
+    "vitest": "^4.1.10"
   }
 }
