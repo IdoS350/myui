@@ -21,7 +21,6 @@ export function DataTableBody({ rowsRef, lastRowRef }: DataTableBodyProps) {
     loadingRowsCount,
   } = useDataTableContext()
 
-  const { rows } = table.getRowModel()
   const virtualItems = rowVirtualizer.getVirtualItems()
 
   return (
@@ -32,65 +31,73 @@ export function DataTableBody({ rowsRef, lastRowRef }: DataTableBodyProps) {
         height: enableVirtualization ? `${rowVirtualizer.getTotalSize()}px` : undefined,
       }}
     >
-      {isLoading ? (
-        enableVirtualization ? (
-          virtualItems.map((virtualRow) => (
-            <LoadingRow
-              key={virtualRow.key}
-              index={virtualRow.index}
-              enableVirtualization
-              rowVirtualizer={rowVirtualizer}
-              virtualRow={virtualRow}
-            />
-          ))
-        ) : (
-          Array.from({ length: loadingRowsCount }).map((_, index) => (
-            <LoadingRow key={`skeleton-${index}`} index={index} />
-          ))
-        )
-      ) : rows.length ? (
-        enableVirtualization ? (
-          virtualItems.map((virtualRow) => {
-            if (renderDetailPanel && virtualRow.index % 2 === 1) {
-              return null
-            }
+      <table.Subscribe
+        selector={(state) => ({ sorting: state.sorting, rowSelection: state.rowSelection })}
+      >
+        {() => {
+          const { rows } = table.getRowModel()
 
-            const staticIndex = renderDetailPanel ? virtualRow.index / 2 : virtualRow.index
-            const rowData = rows[staticIndex]
-
-            if (!rowData) {
-              return null
-            }
-
-            return (
-              <DataTableRow
-                key={virtualRow.key}
-                rowsRef={rowsRef}
-                row={rowData}
-                enableVirtualization
-                rowVirtualizer={rowVirtualizer}
-                virtualRow={virtualRow}
-                ref={
-                  virtualRow.index === virtualItems[virtualItems.length - 1]?.index
-                    ? lastRowRef
-                    : undefined
-                }
-              />
+          return isLoading ? (
+            enableVirtualization ? (
+              virtualItems.map((virtualRow) => (
+                <LoadingRow
+                  key={virtualRow.key}
+                  index={virtualRow.index}
+                  enableVirtualization
+                  rowVirtualizer={rowVirtualizer}
+                  virtualRow={virtualRow}
+                />
+              ))
+            ) : (
+              Array.from({ length: loadingRowsCount }).map((_, index) => (
+                <LoadingRow key={`skeleton-${index}`} index={index} />
+              ))
             )
-          })
-        ) : (
-          rows.map((row, index) => (
-            <DataTableRow
-              key={row.id}
-              rowsRef={rowsRef}
-              row={row}
-              ref={index === rows.length - 1 ? lastRowRef : undefined}
-            />
-          ))
-        )
-      ) : (
-        <Empty />
-      )}
+          ) : rows.length ? (
+            enableVirtualization ? (
+              virtualItems.map((virtualRow) => {
+                if (renderDetailPanel && virtualRow.index % 2 === 1) {
+                  return null
+                }
+
+                const staticIndex = renderDetailPanel ? virtualRow.index / 2 : virtualRow.index
+                const rowData = rows[staticIndex]
+
+                if (!rowData) {
+                  return null
+                }
+
+                return (
+                  <DataTableRow
+                    key={virtualRow.key}
+                    rowsRef={rowsRef}
+                    row={rowData}
+                    enableVirtualization
+                    rowVirtualizer={rowVirtualizer}
+                    virtualRow={virtualRow}
+                    ref={
+                      virtualRow.index === virtualItems[virtualItems.length - 1]?.index
+                        ? lastRowRef
+                        : undefined
+                    }
+                  />
+                )
+              })
+            ) : (
+              rows.map((row, index) => (
+                <DataTableRow
+                  key={row.id}
+                  rowsRef={rowsRef}
+                  row={row}
+                  ref={index === rows.length - 1 ? lastRowRef : undefined}
+                />
+              ))
+            )
+          ) : (
+            <Empty />
+          )
+        }}
+      </table.Subscribe>
     </TablePrimitive.TableBody>
   )
 }

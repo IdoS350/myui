@@ -744,6 +744,11 @@
           "target": "@ui/DataTable/features.ts"
         },
         {
+          "path": "src/components/DataTable/getColumnSizeVars.ts",
+          "type": "registry:ui",
+          "target": "@ui/DataTable/getColumnSizeVars.ts"
+        },
+        {
           "path": "src/components/DataTable/selectColumnDef.tsx",
           "type": "registry:ui",
           "target": "@ui/DataTable/selectColumnDef.tsx"
@@ -752,11 +757,6 @@
           "path": "src/components/DataTable/types.ts",
           "type": "registry:ui",
           "target": "@ui/DataTable/types.ts"
-        },
-        {
-          "path": "src/components/DataTable/useColumnSizeVars.ts",
-          "type": "registry:ui",
-          "target": "@ui/DataTable/useColumnSizeVars.ts"
         }
       ],
       "meta": { "version": "2.0.0" }

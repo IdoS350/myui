@@ -7,52 +7,62 @@ export function DataTableHeader() {
   const { table, enableVirtualization } = useDataTableContext()
 
   return (
-    <TablePrimitive.TableHeader
-      className={styles.tableHeader}
-      data-virtualized={enableVirtualization}
+    <table.Subscribe
+      selector={(state) => ({
+        sorting: state.sorting,
+        rowSelection: state.rowSelection,
+        columnResizing: state.columnResizing,
+      })}
     >
-      {table.getHeaderGroups().map((headerGroup) => (
-        <TablePrimitive.TableRow
-          key={headerGroup.id}
-          className={styles.tableRow}
+      {() => (
+        <TablePrimitive.TableHeader
+          className={styles.tableHeader}
           data-virtualized={enableVirtualization}
         >
-          {headerGroup.headers.map((header) => (
-            <TablePrimitive.TableHead
-              key={header.id}
-              className={styles.tableHead}
-              data-column-id={header.column.id}
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TablePrimitive.TableRow
+              key={headerGroup.id}
+              className={styles.tableRow}
               data-virtualized={enableVirtualization}
-              aria-sort={
-                header.column.getIsSorted() === 'asc'
-                  ? 'ascending'
-                  : header.column.getIsSorted() === 'desc'
-                    ? 'descending'
-                    : undefined
-              }
-              style={{
-                flex: enableVirtualization ? `var(--header-${header?.id}-size)` : undefined,
-                width: !enableVirtualization ? header.getSize() : undefined,
-              }}
             >
-              {header.isPlaceholder ? null : (
-                <ColumnHeader column={header.column}>
-                  <table.FlexRender header={header} />
-                </ColumnHeader>
-              )}
-              {header.column.getCanResize() && (
-                <div
-                  className={styles.resizer}
-                  onMouseDown={header.getResizeHandler()}
-                  onTouchStart={header.getResizeHandler()}
-                  onClick={(event) => event.stopPropagation()}
-                  data-resizing={header.column.getIsResizing()}
-                />
-              )}
-            </TablePrimitive.TableHead>
+              {headerGroup.headers.map((header) => (
+                <TablePrimitive.TableHead
+                  key={header.id}
+                  className={styles.tableHead}
+                  data-column-id={header.column.id}
+                  data-virtualized={enableVirtualization}
+                  aria-sort={
+                    header.column.getIsSorted() === 'asc'
+                      ? 'ascending'
+                      : header.column.getIsSorted() === 'desc'
+                        ? 'descending'
+                        : undefined
+                  }
+                  style={{
+                    flex: enableVirtualization ? `var(--header-${header?.id}-size)` : undefined,
+                    width: !enableVirtualization ? header.getSize() : undefined,
+                  }}
+                >
+                  {header.isPlaceholder ? null : (
+                    <ColumnHeader column={header.column}>
+                      <table.FlexRender header={header} />
+                    </ColumnHeader>
+                  )}
+                  {header.column.getCanResize() && (
+                    <div
+                      className={styles.resizer}
+                      onMouseDown={header.getResizeHandler()}
+                      onTouchStart={header.getResizeHandler()}
+                      onClick={(event) => event.stopPropagation()}
+                      data-resizing={header.column.getIsResizing()}
+                    />
+                  )}
+                </TablePrimitive.TableHead>
+              ))}
+            </TablePrimitive.TableRow>
           ))}
-        </TablePrimitive.TableRow>
-      ))}
-    </TablePrimitive.TableHeader>
+        </TablePrimitive.TableHeader>
+      )}
+    </table.Subscribe>
   )
 }

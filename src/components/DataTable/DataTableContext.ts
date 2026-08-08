@@ -9,7 +9,6 @@ export interface DataTableContextValue<TData extends RowData = Record<string, un
   tableContainerRef: RefObject<HTMLDivElement | null>
   enableVirtualization?: boolean
   renderDetailPanel?: RenderDetailPanel<TData>
-  columnSizeVars: Record<string, number>
   isLoading?: boolean
   loadingRowsCount: number
 }

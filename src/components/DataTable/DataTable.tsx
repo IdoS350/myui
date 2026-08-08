@@ -11,9 +11,9 @@ import {
 } from './DataTableContext'
 import { expandColumnDef } from './expandColumnDef'
 import { features, type DataTableFeatures } from './features'
+import { getColumnSizeVars } from './getColumnSizeVars'
 import TablePrimitive from './TablePrimitive'
 import type { RenderDetailPanel } from './types'
-import { useColumnSizeVars } from './useColumnSizeVars'
 
 interface DataTableRootProps<TData extends RowData, TValue> extends Omit<
   TableOptions<DataTableFeatures, TData>,
@@ -55,14 +55,17 @@ function DataTableRoot<TData extends RowData, TValue>({
     [providedColumns, renderDetailPanel],
   )
 
-  const table = useTable({
-    features,
-    columns: columns as unknown as ColumnDef<DataTableFeatures, TData, unknown>[],
-    data,
-    getRowCanExpand: renderDetailPanel ? () => true : undefined,
-    enableColumnResizing: false,
-    ...options,
-  })
+  const table = useTable(
+    {
+      features,
+      columns: columns as unknown as ColumnDef<DataTableFeatures, TData, unknown>[],
+      data,
+      getRowCanExpand: renderDetailPanel ? () => true : undefined,
+      enableColumnResizing: false,
+      ...options,
+    },
+    (state) => ({ globalFilter: state.globalFilter, expanded: state.expanded }),
+  )
 
   const rowCount = table.getRowModel().rows.length
 
@@ -89,15 +92,12 @@ function DataTableRoot<TData extends RowData, TValue>({
     enabled: enableVirtualization,
   })
 
-  const columnSizeVars = useColumnSizeVars(table)
-
   const contextValue: DataTableContextValue<TData> = {
     table,
     rowVirtualizer,
     tableContainerRef,
     enableVirtualization,
     renderDetailPanel,
-    columnSizeVars,
     isLoading,
     loadingRowsCount,
   }
@@ -114,7 +114,7 @@ interface DataTableContentProps {
 }
 
 function DataTableContent({ children }: DataTableContentProps) {
-  const { tableContainerRef, columnSizeVars, enableVirtualization, renderDetailPanel } =
+  const { table, tableContainerRef, enableVirtualization, renderDetailPanel } =
     useDataTableContext()
 
   return (
@@ -123,14 +123,23 @@ function DataTableContent({ children }: DataTableContentProps) {
       ref={tableContainerRef}
       data-virtualized={enableVirtualization}
     >
-      <TablePrimitive.Table
-        className={styles.table}
-        data-expandable={renderDetailPanel !== undefined}
-        data-virtualized={enableVirtualization}
-        style={{ ...columnSizeVars }}
+      <table.Subscribe
+        selector={(state) => ({
+          columnSizing: state.columnSizing,
+          columnResizing: state.columnResizing,
+        })}
       >
-        {children}
-      </TablePrimitive.Table>
+        {() => (
+          <TablePrimitive.Table
+            className={styles.table}
+            data-expandable={renderDetailPanel !== undefined}
+            data-virtualized={enableVirtualization}
+            style={getColumnSizeVars(table)}
+          >
+            {children}
+          </TablePrimitive.Table>
+        )}
+      </table.Subscribe>
     </div>
   )
 }
