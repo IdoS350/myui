@@ -12,9 +12,11 @@ interface ComboboxContextValue {
 
 const ComboboxContext = React.createContext<ComboboxContextValue>({})
 
-function ComboboxRoot<Value, Multiple extends boolean | undefined = false>(
-  props: BaseCombobox.Root.Props<Value, Multiple>,
-) {
+function ComboboxRoot<
+  Value,
+  Multiple extends boolean | undefined = false,
+  Item = Value,
+>(props: BaseCombobox.Root.Props<Value, Multiple, Item>) {
   return (
     <ComboboxContext.Provider
       value={{
@@ -28,6 +30,7 @@ function ComboboxRoot<Value, Multiple extends boolean | undefined = false>(
 }
 
 const ComboboxChipRemove = Primitives.ChipRemove
+const createComboboxItems = BaseCombobox.createItems
 
 export type ComboboxSize = 'sm' | 'md' | 'lg'
 
@@ -241,4 +244,5 @@ export {
   ComboboxList,
   ComboboxMultiInput,
   ComboboxRoot,
+  createComboboxItems,
 }

@@ -9,6 +9,7 @@ import {
   ComboboxList,
   ComboboxMultiInput,
   ComboboxRoot,
+  createComboboxItems,
 } from './Combobox'
 
 export default {
@@ -40,6 +41,11 @@ const teamMembers: TeamMember[] = [
   { id: 7, name: 'Grace Kim', role: 'Engineering' },
   { id: 8, name: 'Henry Park', role: 'Product' },
 ]
+
+const teamMemberItems = createComboboxItems(teamMembers, {
+  getValue: (member) => member.id,
+  getLabel: (member) => member.name,
+})
 
 function MemberItem({ member }: { member: TeamMember }) {
   return (
@@ -443,6 +449,33 @@ export const ObjectValues: Story = {
             )}
           </ComboboxList>
         </ComboboxRoot>
+      </div>
+    )
+  },
+}
+
+export const IDValues: Story = {
+  render: function IDValues() {
+    const { t } = useTranslation()
+    const [selectedId, setSelectedId] = React.useState<number | null>(null)
+
+    return (
+      <div style={{ width: 300 }}>
+        <ComboboxRoot<number, false, TeamMember>
+          items={teamMemberItems}
+          value={selectedId}
+          onValueChange={setSelectedId}
+        >
+          <ComboboxInput placeholder={t('combobox.assignTo')} />
+          <ComboboxList<TeamMember>>
+            {(member) => (
+              <ComboboxItem key={member.id} value={member.id}>
+                <MemberItem member={member} />
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxRoot>
+        <p>Selected ID: {selectedId ?? 'None'}</p>
       </div>
     )
   },
